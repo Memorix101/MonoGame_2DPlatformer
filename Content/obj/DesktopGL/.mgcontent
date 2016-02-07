@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/70sPixel.spritefont</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/Pixel.spritefont</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/RetroPixel.spritefont</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Music/Rainbow_Ride.mp3</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Test/razer.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Test/sir.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/clouds.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/mountains.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/tileset.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/coins_gold.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/gem_20_points.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/wheelie_left.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/wheelie_right.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/70sPixel_75.spritefont</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/70sPixel_20.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>
