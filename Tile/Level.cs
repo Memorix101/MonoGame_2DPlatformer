@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using FarseerPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using MonoGame_2DPlatformer;
 using MonoGame_2DPlatformer.Core;
+
+using FarseerPhysics.DebugView;
 
 namespace MonoGame_2DPlatformer
 {
@@ -93,6 +96,7 @@ namespace MonoGame_2DPlatformer
 
             coinFont.Text("Coins: " + coins);
 
+            testActor.Update();
             player.Update(gameTime);
             CheckCollision(gameTime);
 
@@ -100,11 +104,11 @@ namespace MonoGame_2DPlatformer
 
         }
 
-        public bool Collision(Rectangle rectangleToCheck)
+        public bool Collision(Rectangle rigidbodyToCheck)
         {
                 foreach (var obj in mapItems)
             {
-                if (obj.TileBoundingBox.Intersects(rectangleToCheck))
+                if (obj.TileBoundingBox.Intersects(rigidbodyToCheck))
                 {
                     return false;
                     GameDebug.Log("Moo");
@@ -125,8 +129,6 @@ namespace MonoGame_2DPlatformer
 
             foreach (ItemTile o in mapItems)
             {
-
-                o.UpdateCollision(gameTime);
 
                 /*
                 if (player.TileBoundingBox.Intersects(o.TileBoundingBox) && o.Type == ItemTileType.Block)
@@ -154,7 +156,7 @@ namespace MonoGame_2DPlatformer
                 }
                 */
             }
-            /*
+
             for (int i = mapCoins.Count - 1; i >= 0; i--)
             {
                 mapCoins[i].Update(gameTime);
@@ -165,16 +167,20 @@ namespace MonoGame_2DPlatformer
                     mapCoins.RemoveAt(i);
                 }
             }
-            */
+            
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            
-           // batch.GraphicsDevice.SamplerStates[1].Filter = TextureFilter.Point;
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
+            Matrix view = Matrix.Identity;
+
+            Matrix view2 = Matrix.CreateScale(33);
+            view2 *= view;
+
             Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-            spriteBatch.Draw(clouds, screenRectangle, Color.White);
-            spriteBatch.Draw(mountains, screenRectangle, Color.White);
+      //      spriteBatch.Draw(clouds, screenRectangle, Color.White);
+      //      spriteBatch.Draw(mountains, screenRectangle, Color.White);
 
             coinFont.Draw(spriteBatch);
 
@@ -187,6 +193,15 @@ namespace MonoGame_2DPlatformer
             {
               c.Draw(spriteBatch);
             }
+
+            DebugViewXNA physicsDebug;
+            physicsDebug = new DebugViewXNA(Game1.world);
+            physicsDebug.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
+            physicsDebug.DefaultShapeColor = Color.Red;
+            physicsDebug.SleepingShapeColor = Color.Green;
+            physicsDebug.StaticShapeColor = Color.Violet;
+            physicsDebug.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
+            physicsDebug.RenderDebugData(ref projection, ref view2);
 
             player.Draw(spriteBatch);
             testActor.Draw(spriteBatch);

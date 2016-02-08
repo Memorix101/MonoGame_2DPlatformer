@@ -9,19 +9,22 @@ namespace MonoGame_2DPlatformer
 {
     class TestActor
     {
-        Body rectangle;
+        Body rigidbody;
         Texture2D texture;
+        Vector2 position = new Vector2(6.5f, 0f);
+      //  Rectangle rect = new Rectangle(0,0,32,32);
 
         public TestActor()
        {
+            //  texture = Game1.content.Load<Texture2D>("Sprites/tileset");
             texture = Game1.content.Load<Texture2D>("Test/box");
+
             ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
-            rectangle = BodyFactory.CreateRectangle(Game1.world, 1f, 1f, 1.0f);
-            rectangle.BodyType = BodyType.Dynamic;
-            rectangle.Position = new Vector2(3.5f, 3f);
-            rectangle.Restitution = 0.3f;
-            rectangle.Friction = 0.5f;
-            rectangle.CollidesWith = Category.All;
+            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Width), 1.0f, position);
+            rigidbody.BodyType = BodyType.Dynamic;
+            rigidbody.Restitution = 0.3f;
+            rigidbody.Friction = 0.5f;
+            rigidbody.CollidesWith = Category.All;
         }
 
         public Body body
@@ -31,14 +34,14 @@ namespace MonoGame_2DPlatformer
 
         public void Update()
         {
-            //rectangle.ApplyForce(new Vector2(2, 2));
-            //Console.WriteLine(ConvertUnits.ToDisplayUnits(rectangle.Position));
+            //rigidbody.ApplyForce(new Vector2(2, 2));
+            //Console.WriteLine(ConvertUnits.ToDisplayUnits(rigidbody.Position));
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rectangle.Position), null, Color.White, rectangle.Rotation, 
-                new Vector2( texture.Width / 2.0f, texture.Height / 2.0f), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), null, Color.White, rigidbody.Rotation, 
+                new Vector2(texture.Width / 2.0f, texture.Height / 2.0f), 1f, SpriteEffects.None, 1f);
         }
     }
 }

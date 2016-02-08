@@ -27,8 +27,6 @@ E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bi
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_right.xnb
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_75.xnb
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_20.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.exe
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.pdb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\level0.txt
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\test.txt
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\test.fmgui
@@ -46,16 +44,21 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprit
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\tileset.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_left.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_right.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\box.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\razer.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\sir.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\OpenTK.dll.config
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Font.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\DebugView Content.contentproj
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Font.spritefont
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\test.map
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\MonoGame_2DPlatformer.exe
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\MonoGame_2DPlatformer.pdb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\DebugView MonoGame.dll
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\FarseerPhysics MonoGame.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\MonoGame.Framework.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\NVorbis.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\OpenTK.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.csprojResolveAssemblyReference.cache
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\DebugView MonoGame.dll
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\FarseerPhysics MonoGame.dll
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\box.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.exe
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.pdb

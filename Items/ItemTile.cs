@@ -29,7 +29,7 @@ namespace MonoGame_2DPlatformer
         ItemTileType type;
         Rectangle rect;
         BoundingBox boundingBox;
-        Body tileBody;
+        Body rigidbody;
 
         public ItemTile(Vector2 p, float l, ItemTileType t)
         {
@@ -47,9 +47,8 @@ namespace MonoGame_2DPlatformer
             // 1 meters equals 64 pixels here
 
             ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
-                tileBody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f); //default 1:64 ratio 1 meter = 64 pixel
-                tileBody.BodyType = BodyType.Kinematic;
-                tileBody.Position = ConvertUnits.ToSimUnits(Position);
+                rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
+                rigidbody.BodyType = BodyType.Kinematic;
 
             LoadBlock(p);
         }
@@ -86,13 +85,13 @@ namespace MonoGame_2DPlatformer
                 case ItemTileType.Blank:
                     this.Rect = rect;
                     this.LayerDepth = layer;
-                    tileBody.CollidesWith = Category.None;
+                    rigidbody.CollidesWith = Category.None;
                     break;
 
                 case ItemTileType.Block:
                     this.Rect = rect;
                     this.LayerDepth = layer;
-                    tileBody.CollidesWith = Category.All;
+                    rigidbody.CollidesWith = Category.All;
                     break;
 
             }
@@ -115,7 +114,7 @@ namespace MonoGame_2DPlatformer
             if(Type == ItemTileType.Blank)
                 spriteBatch.Draw(texture, Position, rect, Color.Transparent);
             else
-                spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(tileBody.Position), rect, Color.White, tileBody.Rotation, new Vector2(ConvertUnits.ToSimUnits(rect.Width / 2.0f), ConvertUnits.ToSimUnits(rect.Height / 2.0f)), 1f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), rect, Color.White, rigidbody.Rotation, new Vector2(ConvertUnits.ToSimUnits(rect.Width / 2.0f), ConvertUnits.ToSimUnits(rect.Height / 2.0f)), 1f, SpriteEffects.None, 1f);
             //base.Draw(batch);
         }
     }

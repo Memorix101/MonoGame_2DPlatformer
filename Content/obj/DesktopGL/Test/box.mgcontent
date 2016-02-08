@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Test/box.png</SourceFile>
-  <SourceTime>2016-02-08T13:23:03.4734634+01:00</SourceTime>
+  <SourceTime>2016-02-08T16:41:19.4172445+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Test/box.xnb</DestFile>
-  <DestTime>2016-02-08T13:23:07.9399272+01:00</DestTime>
+  <DestTime>2016-02-08T16:41:26.8109197+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

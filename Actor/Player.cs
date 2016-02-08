@@ -22,10 +22,11 @@ namespace MonoGame_2DPlatformer
     {
 
         Texture2D texture;
-        const float moveSpeed = 100f;
+        const float moveSpeed = 1f;
+        const float jumpForce = -5f;
         Vector2 pos;
 
-        Body playerBody;
+        Body rigidbody;
 
         PlayerDir playerDir;
 
@@ -51,17 +52,17 @@ namespace MonoGame_2DPlatformer
 
             // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
             // 1 meters equals 64 pixels here
-            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
+       //     ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 
-            playerBody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f);
-            playerBody.BodyType = BodyType.Dynamic;
-            playerBody.Position = ConvertUnits.ToSimUnits(this.Position);
-            playerBody.CollidesWith = Category.All;
+            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f, ConvertUnits.ToSimUnits(this.Position));
+            rigidbody.BodyType = BodyType.Dynamic;
+          //  rigidbody.Friction = 1f;
+            rigidbody.CollidesWith = Category.All;
         
 
             // Give it some bounce and friction
-            //playerBody.Restitution = 0.3f;
-            //playerBody.Friction = 0.5f;
+            //rigidbody.Restitution = 0.3f;
+            //rigidbody.Friction = 0.5f;
         }
 
         public float Grav
@@ -90,31 +91,7 @@ namespace MonoGame_2DPlatformer
             this.Rect = playerRect;
             this.Position = pos;
 
-            /*
-          //  pos.Y += Grav * airTime * Time.DeltaTime;
-         //   pos.Y -= velocity.Y * Time.DeltaTime;
 
-            /*
-            if (velocity.Y > 50f * Time.DeltaTime)
-                velocity.Y -= gravity * Time.DeltaTime;
-            else
-                velocity.Y = 0f;
-            */
-            /*
-            if (!grounded)
-            {
-         //       airTime += 5f * Time.DeltaTime; //fall back to floor
-                inAir = true;
-            }
-            else if (grounded)
-            {
-                if (inAir)
-                    velocity.Y = 0f;
-
-         //       airTime = 0f;
-                inAir = false;
-            }
-            */
             Input(gameTime);
         }
 
@@ -122,7 +99,8 @@ namespace MonoGame_2DPlatformer
         {
             if(!inAir)
             {
-                velocity.Y = 200f;                
+                // velocity.Y = 200f;             
+                rigidbody.ApplyForce(new Vector2(0f, jumpForce));  
             }           
         }
 
@@ -130,13 +108,13 @@ namespace MonoGame_2DPlatformer
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                pos.X -= moveSpeed * Time.DeltaTime;
+                rigidbody.ApplyForce(new Vector2(-moveSpeed, 0f));
                 playerDir = PlayerDir.left;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                pos.X += moveSpeed * Time.DeltaTime;
+                rigidbody.ApplyForce(new Vector2(moveSpeed, 0f));
                 playerDir = PlayerDir.right;
             }
 
@@ -146,7 +124,7 @@ namespace MonoGame_2DPlatformer
                 Jump(gameTime);
                 buttonDown = true;
             }
-            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown && isGrounded && !inAir)
+            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown )//&& isGrounded && !inAir)
             {
                 GameDebug.Log("DO NOT JUMP!!!!!");
                 buttonDown = false;
@@ -159,9 +137,11 @@ namespace MonoGame_2DPlatformer
         public override void Draw(SpriteBatch spriteBatch)
         {
             if(playerDir == PlayerDir.left)
-            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, new Vector2(ConvertUnits.ToSimUnits(playerRect.Width / 2.0f), ConvertUnits.ToSimUnits(playerRect.Height / 2.0f)), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
+            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
+                new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
             else if (playerDir == PlayerDir.right)
-             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, new Vector2(ConvertUnits.ToSimUnits(playerRect.Width / 2.0f), ConvertUnits.ToSimUnits(playerRect.Height / 2.0f)), 1f, SpriteEffects.None, LayerDepth);
+             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
+                 new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.None, LayerDepth);
             //base.Draw(spriteBatch);
         }
     }
