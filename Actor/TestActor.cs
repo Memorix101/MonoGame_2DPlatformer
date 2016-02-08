@@ -15,9 +15,10 @@ namespace MonoGame_2DPlatformer
         public TestActor()
        {
             texture = Game1.content.Load<Texture2D>("Test/box");
+            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
             rectangle = BodyFactory.CreateRectangle(Game1.world, 1f, 1f, 1.0f);
             rectangle.BodyType = BodyType.Dynamic;
-            rectangle.Position = new Vector2(3.5f, 5f);
+            rectangle.Position = new Vector2(3.5f, 3f);
             rectangle.Restitution = 0.3f;
             rectangle.Friction = 0.5f;
             rectangle.CollidesWith = Category.All;

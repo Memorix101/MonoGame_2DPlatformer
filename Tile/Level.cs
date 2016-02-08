@@ -19,7 +19,7 @@ namespace MonoGame_2DPlatformer
         Texture2D clouds;
         Texture2D mountains;
 
-       // Player player;
+        Player player;
         TestActor testActor;
 
         Ray ray = new Ray();
@@ -72,7 +72,7 @@ namespace MonoGame_2DPlatformer
                             break;
 
                         case 'p':
-                            //player = new Player(new Vector2(x * 32, y * 32));
+                            player = new Player(new Vector2(x * 32, y * 32));
                             testActor = new TestActor();
                             break;
 
@@ -93,7 +93,7 @@ namespace MonoGame_2DPlatformer
 
             coinFont.Text("Coins: " + coins);
 
-         //   player.Update(gameTime);
+            player.Update(gameTime);
             CheckCollision(gameTime);
 
        //     Collision(player.TileBoundingBox);
@@ -188,7 +188,7 @@ namespace MonoGame_2DPlatformer
               c.Draw(spriteBatch);
             }
 
-            //    player.Draw(batch);
+            player.Draw(spriteBatch);
             testActor.Draw(spriteBatch);
 
             SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;

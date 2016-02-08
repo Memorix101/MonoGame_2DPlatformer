@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 
@@ -50,12 +51,13 @@ namespace MonoGame_2DPlatformer
 
             // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
             // 1 meters equals 64 pixels here
-           //FarseerPhysics.ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
+            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 
-            // Create the circle fixture
-            playerBody = BodyFactory.CreateRectangle(Game1.world, playerRect.Width, playerRect.Height, 1f);
-            playerBody.BodyType = BodyType.Static;
-            playerBody.Position = this.Position;
+            playerBody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f);
+            playerBody.BodyType = BodyType.Dynamic;
+            playerBody.Position = ConvertUnits.ToSimUnits(this.Position);
+            playerBody.CollidesWith = Category.All;
+        
 
             // Give it some bounce and friction
             //playerBody.Restitution = 0.3f;
@@ -157,9 +159,9 @@ namespace MonoGame_2DPlatformer
         public override void Draw(SpriteBatch spriteBatch)
         {
             if(playerDir == PlayerDir.left)
-            spriteBatch.Draw(texture, FarseerPhysics.ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, LayerDepth);
+            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, new Vector2(ConvertUnits.ToSimUnits(playerRect.Width / 2.0f), ConvertUnits.ToSimUnits(playerRect.Height / 2.0f)), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
             else if (playerDir == PlayerDir.right)
-             spriteBatch.Draw(texture, FarseerPhysics.ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, LayerDepth);
+             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, new Vector2(ConvertUnits.ToSimUnits(playerRect.Width / 2.0f), ConvertUnits.ToSimUnits(playerRect.Height / 2.0f)), 1f, SpriteEffects.None, LayerDepth);
             //base.Draw(spriteBatch);
         }
     }
