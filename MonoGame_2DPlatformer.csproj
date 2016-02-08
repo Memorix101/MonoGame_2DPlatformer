@@ -40,9 +40,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Actor\Player.cs" />
+    <Compile Include="Actor\TestActor.cs" />
     <Compile Include="Core\GameDebug.cs" />
     <Compile Include="Core\GUI.cs" />
-    <Compile Include="Core\RayCast.cs" />
     <Compile Include="Core\Screen.cs" />
     <Compile Include="Core\SpriteBatchEx.cs" />
     <Compile Include="Core\Time.cs" />
@@ -58,14 +58,22 @@
     <Compile Include="Tile\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="OpenTK">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
+    <Reference Include="DebugView MonoGame">
+      <HintPath>Libs\DebugView MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="FarseerPhysics MonoGame">
+      <HintPath>Libs\FarseerPhysics MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.5.0.1288, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="NVorbis">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\NVorbis.dll</HintPath>
     </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

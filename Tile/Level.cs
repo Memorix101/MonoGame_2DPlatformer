@@ -19,7 +19,9 @@ namespace MonoGame_2DPlatformer
         Texture2D clouds;
         Texture2D mountains;
 
-        Player player;
+       // Player player;
+        TestActor testActor;
+
         Ray ray = new Ray();
         
         List<ItemTile> mapItems;
@@ -70,7 +72,8 @@ namespace MonoGame_2DPlatformer
                             break;
 
                         case 'p':
-                            player = new Player(new Vector2(x * 32, y * 32));
+                            //player = new Player(new Vector2(x * 32, y * 32));
+                            testActor = new TestActor();
                             break;
 
                         // Unknown tile type character
@@ -90,8 +93,10 @@ namespace MonoGame_2DPlatformer
 
             coinFont.Text("Coins: " + coins);
 
-            player.Update(gameTime);
+         //   player.Update(gameTime);
             CheckCollision(gameTime);
+
+       //     Collision(player.TileBoundingBox);
 
         }
 
@@ -111,7 +116,9 @@ namespace MonoGame_2DPlatformer
         private void CheckCollision(GameTime gameTime)
         {
 
-            ray.Position = new Vector3(player.Position.X + player.Rect.Width/2, player.Position.Y + player.Rect.Height, 0);
+            testActor.Update();
+
+       //     ray.Position = new Vector3(player.Position.X + player.Rect.Width/2, player.Position.Y + player.Rect.Height, 0);
             ray.Direction = new Vector3(0, 1, 0);
             
             bool intersect = false;
@@ -121,6 +128,17 @@ namespace MonoGame_2DPlatformer
 
                 o.UpdateCollision(gameTime);
 
+                /*
+                if (player.TileBoundingBox.Intersects(o.TileBoundingBox) && o.Type == ItemTileType.Block)
+                {
+                    intersect = true;
+                    player.isGrounded = intersect;
+                }
+                else if (!intersect)
+                {
+                    player.isGrounded = intersect;
+                }
+                
                 float distance = 5 + player.Velocity.Y * Time.DeltaTime;
 
                 var result = ray.Intersects(o.BoundingBox);
@@ -134,8 +152,9 @@ namespace MonoGame_2DPlatformer
                 {
                     player.isGrounded = intersect;
                 }
+                */
             }
-
+            /*
             for (int i = mapCoins.Count - 1; i >= 0; i--)
             {
                 mapCoins[i].Update(gameTime);
@@ -146,32 +165,34 @@ namespace MonoGame_2DPlatformer
                     mapCoins.RemoveAt(i);
                 }
             }
+            */
         }
 
-        public virtual void Draw(SpriteBatch batch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             
            // batch.GraphicsDevice.SamplerStates[1].Filter = TextureFilter.Point;
             Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-            batch.Draw(clouds, screenRectangle, Color.White);
-            batch.Draw(mountains, screenRectangle, Color.White);
+            spriteBatch.Draw(clouds, screenRectangle, Color.White);
+            spriteBatch.Draw(mountains, screenRectangle, Color.White);
 
-            coinFont.Draw(batch);
+            coinFont.Draw(spriteBatch);
 
             foreach (ItemTile it in mapItems)
             {
-                it.Draw(batch);
+                it.Draw(spriteBatch);
             }
 
             foreach (Coins c in mapCoins)
             {
-              c.Draw(batch);
+              c.Draw(spriteBatch);
             }
-            
-            player.Draw(batch);
+
+            //    player.Draw(batch);
+            testActor.Draw(spriteBatch);
 
             SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
-            batch.DrawLine(new Vector2(ray.Position.X, ray.Position.Y), new Vector2(ray.Position.X + ray.Direction.X, ray.Position.Y + ray.Direction.Y), Color.Red);
+            spriteBatch.DrawLine(new Vector2(ray.Position.X, ray.Position.Y), new Vector2(ray.Position.X + ray.Direction.X, ray.Position.Y + ray.Direction.Y), Color.Red);
         }
 
     }

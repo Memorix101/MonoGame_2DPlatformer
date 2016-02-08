@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/Pixel.spritefont</SourceFile>
-  <SourceTime>2016-02-06T20:27:58.0055544+01:00</SourceTime>
+  <SourceTime>2016-02-08T00:28:40.3247167+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Fonts/Pixel.xnb</DestFile>
-  <DestTime>2016-02-08T00:25:24.2165211+01:00</DestTime>
+  <DestTime>2016-02-08T03:46:21.8650468+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

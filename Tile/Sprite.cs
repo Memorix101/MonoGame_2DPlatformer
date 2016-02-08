@@ -20,9 +20,7 @@ namespace MonoGame_2DPlatformer
         Vector2 origin = Vector2.Zero;
         float layerDepth;
         float rotation;
-
-        BoundingBox boundingBox;
-
+        
         /// <summary>
         /// Props
         /// </summary>

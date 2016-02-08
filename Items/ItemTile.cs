@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics;
+using FarseerPhysics.Factories;
+
 
 using MonoGame_2DPlatformer.Core;
 
@@ -26,8 +29,7 @@ namespace MonoGame_2DPlatformer
         ItemTileType type;
         Rectangle rect;
         BoundingBox boundingBox;
-        bool destroy;
-        bool walkable;
+        Body tileBody;
 
         public ItemTile(Vector2 p, float l, ItemTileType t)
         {
@@ -37,9 +39,17 @@ namespace MonoGame_2DPlatformer
             type = t;
 
             if (t == ItemTileType.Blank)
-                rect = new Rectangle(0, 0, 0, 0);
+                rect = new Rectangle(0, 0, 1, 1);
             else if (t == ItemTileType.Block)
                 rect = new Rectangle(12, 0, 32, 32);
+
+            // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
+            // 1 meters equals 64 pixels here
+
+            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
+                tileBody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f); //default 1:64 ratio 1 meter = 64 pixel
+                tileBody.BodyType = BodyType.Kinematic;
+                tileBody.Position = ConvertUnits.ToSimUnits(Position);
 
             LoadBlock(p);
         }
@@ -69,19 +79,6 @@ namespace MonoGame_2DPlatformer
             }
         }
 
-        public bool Destroy
-        {
-            set
-            {
-                destroy = value;
-            }
-        }
-
-        public bool Walkable
-        {
-            get { return walkable; }
-        }
-
         public void LoadBlock(Vector2 p)
         {
             switch(type)
@@ -89,13 +86,13 @@ namespace MonoGame_2DPlatformer
                 case ItemTileType.Blank:
                     this.Rect = rect;
                     this.LayerDepth = layer;
-                    walkable = false;
+                    tileBody.CollidesWith = Category.None;
                     break;
 
                 case ItemTileType.Block:
                     this.Rect = rect;
                     this.LayerDepth = layer;
-                    walkable = true;
+                    tileBody.CollidesWith = Category.All;
                     break;
 
             }
@@ -113,10 +110,12 @@ namespace MonoGame_2DPlatformer
             
         }
 
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            if(!destroy)
-            batch.Draw(texture, Position, rect, Color.White);
+            if(Type == ItemTileType.Blank)
+                spriteBatch.Draw(texture, Position, rect, Color.Transparent);
+            else
+                spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(tileBody.Position), rect, Color.White, tileBody.Rotation, new Vector2(ConvertUnits.ToSimUnits(rect.Width / 2.0f), ConvertUnits.ToSimUnits(rect.Height / 2.0f)), 1f, SpriteEffects.None, 1f);
             //base.Draw(batch);
         }
     }

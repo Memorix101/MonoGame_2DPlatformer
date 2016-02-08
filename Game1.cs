@@ -3,10 +3,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
-
+using FarseerPhysics.Dynamics;
+using System;
 //My own imports
 using MonoGame_2DPlatformer;
 using MonoGame_2DPlatformer.Core;
+
 
 namespace MonoGame_2DPlatformer
 {
@@ -23,6 +25,7 @@ namespace MonoGame_2DPlatformer
         public static GameTime _gameTime { get; private set; }
         public static GraphicsDeviceManager graphics { get; private set; }
         public static ContentManager content { get; private set; }
+        public static World world { get; private set; }
 
         /// <summary>
         /// Declare your stuff here
@@ -37,11 +40,9 @@ namespace MonoGame_2DPlatformer
 
         Level level;
 
-        GUI testText; 
+        GUI testText;
 
         Song ms_rainbow_ride;
-
-        float timeTest;
 
         string some_text = "2D Platformer";
 
@@ -52,8 +53,8 @@ namespace MonoGame_2DPlatformer
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Screen.fullScreen = false;
-       //     Screen.resolution(1280, 720);
-
+            //     Screen.resolution(1280, 720);
+            
         }
 
         protected override void Initialize()
@@ -82,6 +83,15 @@ namespace MonoGame_2DPlatformer
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            if (world == null)
+            {
+                world = new World(new Vector2(0, 1));
+            }
+            else
+            {
+                world.Clear();
+            }
 
             ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
             //  MediaPlayer.Play(ms_rainbow_ride);
@@ -117,6 +127,8 @@ namespace MonoGame_2DPlatformer
 
             // GameDebug.Log(timeTest.ToString());
             // TODO: Add your update logic here
+
+            world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
             level.Update(gameTime);
 

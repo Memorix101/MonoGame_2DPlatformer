@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 using MonoGame_2DPlatformer.Core;
 
@@ -25,12 +24,13 @@ namespace MonoGame_2DPlatformer
         const float moveSpeed = 100f;
         Vector2 pos;
 
+        Body playerBody;
+
         PlayerDir playerDir;
 
         private const float gravity = 50f;
 
-     //   float gravityValue;
-        float airTime;
+     //   float airTime;
 
         Rectangle playerRect = new Rectangle(0, 0, 32, 32);
 
@@ -45,6 +45,21 @@ namespace MonoGame_2DPlatformer
             this.Position = p;  pos = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
+
+            /// Setup physics
+
+            // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
+            // 1 meters equals 64 pixels here
+           //FarseerPhysics.ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
+
+            // Create the circle fixture
+            playerBody = BodyFactory.CreateRectangle(Game1.world, playerRect.Width, playerRect.Height, 1f);
+            playerBody.BodyType = BodyType.Static;
+            playerBody.Position = this.Position;
+
+            // Give it some bounce and friction
+            //playerBody.Restitution = 0.3f;
+            //playerBody.Friction = 0.5f;
         }
 
         public float Grav
@@ -73,8 +88,9 @@ namespace MonoGame_2DPlatformer
             this.Rect = playerRect;
             this.Position = pos;
 
-            pos.Y += Grav * airTime * Time.DeltaTime;
-            pos.Y -= velocity.Y * Time.DeltaTime;
+            /*
+          //  pos.Y += Grav * airTime * Time.DeltaTime;
+         //   pos.Y -= velocity.Y * Time.DeltaTime;
 
             /*
             if (velocity.Y > 50f * Time.DeltaTime)
@@ -82,10 +98,10 @@ namespace MonoGame_2DPlatformer
             else
                 velocity.Y = 0f;
             */
-
+            /*
             if (!grounded)
             {
-                airTime += 5f * Time.DeltaTime; //fall back to floor
+         //       airTime += 5f * Time.DeltaTime; //fall back to floor
                 inAir = true;
             }
             else if (grounded)
@@ -93,10 +109,10 @@ namespace MonoGame_2DPlatformer
                 if (inAir)
                     velocity.Y = 0f;
 
-                airTime = 0f;
+         //       airTime = 0f;
                 inAir = false;
             }
-
+            */
             Input(gameTime);
         }
 
@@ -141,9 +157,9 @@ namespace MonoGame_2DPlatformer
         public override void Draw(SpriteBatch spriteBatch)
         {
             if(playerDir == PlayerDir.left)
-            spriteBatch.Draw(texture, Position, playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, LayerDepth);
+            spriteBatch.Draw(texture, FarseerPhysics.ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.FlipHorizontally, LayerDepth);
             else if (playerDir == PlayerDir.right)
-             spriteBatch.Draw(texture, Position, playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, LayerDepth);
+             spriteBatch.Draw(texture, FarseerPhysics.ConvertUnits.ToDisplayUnits(playerBody.Position), playerRect, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, LayerDepth);
             //base.Draw(spriteBatch);
         }
     }

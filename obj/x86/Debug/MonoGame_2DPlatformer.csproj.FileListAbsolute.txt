@@ -56,3 +56,6 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\MonoGame.Fram
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\NVorbis.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\OpenTK.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.csprojResolveAssemblyReference.cache
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\DebugView MonoGame.dll
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\FarseerPhysics MonoGame.dll
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\box.xnb

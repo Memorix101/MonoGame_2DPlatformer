@@ -62,7 +62,7 @@ namespace MonoGame_2DPlatformer
 
                         MapItems _mapitems = new MapItems();
 
-                        _mapitems.itemTile = new ItemTile(_mapitems.pos, 1f, ItemTileType.Blank);
+                    //    _mapitems.itemTile = new ItemTile(_mapitems.pos, 1f, ItemTileType.Blank);
                         _mapitems.pos = new Vector2(float.Parse(cords[1]), float.Parse(cords[2]));
                        // _mapitems.itemTile.Init(_mapitems.pos, 1f);
                       //  _mapitems.itemTile.LoadBlock();
