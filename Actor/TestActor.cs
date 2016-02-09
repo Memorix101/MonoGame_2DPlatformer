@@ -11,7 +11,7 @@ namespace MonoGame_2DPlatformer
     {
         Body rigidbody;
         Texture2D texture;
-        Vector2 position = new Vector2(64f, 0f);
+        Vector2 position = new Vector2(0f, 0f);
 
         public TestActor()
        {

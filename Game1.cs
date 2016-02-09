@@ -41,7 +41,7 @@ namespace MonoGame_2DPlatformer
 
         Song ms_rainbow_ride;
 
-        string some_text = "2D Platformer";
+        string some_text = "EARLY PRE-ALPHA CODE";
 
         public Game1()
         {
@@ -147,6 +147,8 @@ namespace MonoGame_2DPlatformer
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
 
+
+            /// CURRENT FAKE CAMERA
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
             Matrix view = Matrix.Identity;
 
@@ -155,27 +157,10 @@ namespace MonoGame_2DPlatformer
             Matrix view2 = Matrix.CreateScale(32);
             view2 *= view;
 
-
-
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, view);
-
-          //  spriteBatch.Begin();
-
-            //DebugView.RenderDebugData(ref Camera.SimProjection, ref Camera.SimView);
-
-
             level.Draw(spriteBatch);
-      //      Matrix proj = Matrix.CreateOrthographicOffCenter(0f, graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height, 0f, 0f, 1f);
-             
-            spriteBatch.End();
-
-              
-            
-            /*
-            spriteBatch.Begin();
             testText.Draw(spriteBatch);
             spriteBatch.End();
-            */
 
             base.Draw(gameTime);
         }
