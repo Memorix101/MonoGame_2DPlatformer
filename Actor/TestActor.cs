@@ -11,16 +11,14 @@ namespace MonoGame_2DPlatformer
     {
         Body rigidbody;
         Texture2D texture;
-        Vector2 position = new Vector2(6.5f, 0f);
-      //  Rectangle rect = new Rectangle(0,0,32,32);
+        Vector2 position = new Vector2(64f, 0f);
 
         public TestActor()
        {
             //  texture = Game1.content.Load<Texture2D>("Sprites/tileset");
             texture = Game1.content.Load<Texture2D>("Test/box");
 
-            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
-            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Width), 1.0f, position);
+            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 1.0f, ConvertUnits.ToSimUnits(position));
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.Restitution = 0.3f;
             rigidbody.Friction = 0.5f;

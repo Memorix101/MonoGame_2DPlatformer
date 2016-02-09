@@ -62,7 +62,7 @@ namespace MonoGame_2DPlatformer
                     {
                         // Blank space
                         case '.':
-                            mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 0f, ItemTileType.Blank));
+                        // mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 0f, ItemTileType.Blank));
                             break;
 
                         case '#':
@@ -80,8 +80,8 @@ namespace MonoGame_2DPlatformer
                             break;
 
                         // Unknown tile type character
-                        default:
-                            throw new Exception(String.Format("Wrong Char"));
+                    //    default:
+                      //      throw new Exception(String.Format("Wrong Char"));
                     }
                     x++;
                 }
@@ -174,13 +174,12 @@ namespace MonoGame_2DPlatformer
         {
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
             Matrix view = Matrix.Identity;
-
-            Matrix view2 = Matrix.CreateScale(33);
+            view = Matrix.CreateTranslation(8, 8, 0); // correction the view after Farseer pixels to meter convertation
+            Matrix view2 = Matrix.CreateScale(32); //default 32
             view2 *= view;
-
             Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-      //      spriteBatch.Draw(clouds, screenRectangle, Color.White);
-      //      spriteBatch.Draw(mountains, screenRectangle, Color.White);
+        //          spriteBatch.Draw(clouds, screenRectangle, Color.White);
+          //        spriteBatch.Draw(mountains, screenRectangle, Color.White);
 
             coinFont.Draw(spriteBatch);
 

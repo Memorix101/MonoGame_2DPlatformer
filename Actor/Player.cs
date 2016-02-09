@@ -24,7 +24,6 @@ namespace MonoGame_2DPlatformer
         Texture2D texture;
         const float moveSpeed = 1f;
         const float jumpForce = -5f;
-        Vector2 pos;
 
         Body rigidbody;
 
@@ -44,7 +43,7 @@ namespace MonoGame_2DPlatformer
         public Player(Vector2 p)
         {
             this.tile = texture = Game1.content.Load<Texture2D>("Sprites/wheelie_right");
-            this.Position = p;  pos = p;
+            this.Position = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
 
@@ -52,11 +51,12 @@ namespace MonoGame_2DPlatformer
 
             // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
             // 1 meters equals 64 pixels here
-       //     ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
 
-            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f, ConvertUnits.ToSimUnits(this.Position));
+            //rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f, ConvertUnits.ToSimUnits(this.Position));
+            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Height/2), 1f, ConvertUnits.ToSimUnits(this.Position));
             rigidbody.BodyType = BodyType.Dynamic;
-          //  rigidbody.Friction = 1f;
+            rigidbody.FixedRotation = true;
+            //rigidbody.Friction = 1f;
             rigidbody.CollidesWith = Category.All;
         
 
@@ -89,9 +89,8 @@ namespace MonoGame_2DPlatformer
         public void Update(GameTime gameTime)
         {
             this.Rect = playerRect;
-            this.Position = pos;
-
-
+          //  this.Position = pos;
+          
             Input(gameTime);
         }
 

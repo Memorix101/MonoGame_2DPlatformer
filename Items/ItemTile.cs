@@ -43,10 +43,6 @@ namespace MonoGame_2DPlatformer
             else if (t == ItemTileType.Block)
                 rect = new Rectangle(12, 0, 32, 32);
 
-            // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
-            // 1 meters equals 64 pixels here
-
-            ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
                 rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
                 rigidbody.BodyType = BodyType.Kinematic;
 
@@ -114,7 +110,7 @@ namespace MonoGame_2DPlatformer
             if(Type == ItemTileType.Blank)
                 spriteBatch.Draw(texture, Position, rect, Color.Transparent);
             else
-                spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), rect, Color.White, rigidbody.Rotation, new Vector2(ConvertUnits.ToSimUnits(rect.Width / 2.0f), ConvertUnits.ToSimUnits(rect.Height / 2.0f)), 1f, SpriteEffects.None, 1f);
+                spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), rect, Color.White, rigidbody.Rotation, new Vector2(rect.Width / 2.0f, rect.Height / 2.0f), 1f, SpriteEffects.None, 1f);
             //base.Draw(batch);
         }
     }

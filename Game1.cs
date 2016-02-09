@@ -33,8 +33,6 @@ namespace MonoGame_2DPlatformer
         /// Declare your stuff here
         /// </summary>
 
-        Camera2D Camera;
-
         SpriteBatch spriteBatch;
 
         Level level;
@@ -102,7 +100,6 @@ namespace MonoGame_2DPlatformer
             world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
 
             level.Update(gameTime);
-            Camera.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -113,6 +110,10 @@ namespace MonoGame_2DPlatformer
 
             if (world == null)
             {
+
+                // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
+                // 1 meters equals 64 pixels here
+                ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
                 world = new World(new Vector2(0, 1));
             }
             else
@@ -120,7 +121,6 @@ namespace MonoGame_2DPlatformer
                 world.Clear();
             }
 
-Camera = new Camera2D(graphics.GraphicsDevice);
 
             /*
             if (DebugView == null)
@@ -147,10 +147,17 @@ Camera = new Camera2D(graphics.GraphicsDevice);
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
 
-            // spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            //spriteBatch.DrawString(testText, some_text, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - testText.MeasureString(some_text).X * 3, 0), Color.White);
-            
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
+            Matrix view = Matrix.Identity;
+
+            view = Matrix.CreateTranslation(16, 16, 0); // correction the view after Farseer pixels to meter convertation
+
+            Matrix view2 = Matrix.CreateScale(32);
+            view2 *= view;
+
+
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, view);
 
           //  spriteBatch.Begin();
 
