@@ -34,10 +34,11 @@ namespace MonoGame_2DPlatformer
             this.tile = texture = Game1.content.Load<Texture2D>("Sprites/coins_gold");
             this.Position = p;
 
+            //Set rigidbody behaivior here
             rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(coinRect.Width), ConvertUnits.ToSimUnits(coinRect.Width), 1.0f, ConvertUnits.ToSimUnits(this.Position));
             rigidbody.BodyType = BodyType.Static;
-            rigidbody.Restitution = 0.3f;
-            rigidbody.Friction = 0.5f;
+            rigidbody.Restitution = 0f; // No bounciness
+            rigidbody.Friction = 1f;
 
         }
 

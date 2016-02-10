@@ -43,8 +43,11 @@ namespace MonoGame_2DPlatformer
             else if (t == ItemTileType.Block)
                 rect = new Rectangle(12, 0, 32, 32);
 
-                rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
+            //Set rigidbody behaivior here
+            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
                 rigidbody.BodyType = BodyType.Kinematic;
+            rigidbody.Restitution = 0f; // No bounciness
+            rigidbody.Friction = 1f;
 
             LoadBlock(p);
         }
@@ -93,19 +96,7 @@ namespace MonoGame_2DPlatformer
             }
         }
 
-        public void UpdateCollision(GameTime gameTime)
-        {
-           //boundingBox = new BoundingBox(new Vector3(this.Position.X, this.Position.Y, 0), new Vector3(Position.X - rect.Size.X, Position.Y - rect.Size.Y, 0));
-         
-            this.boundingBox.Min.X = this.Position.X;
-            this.boundingBox.Min.Y = this.Position.Y;
-            this.boundingBox.Max.X = this.Position.X + this.rect.Size.X;
-            this.boundingBox.Max.Y = this.Position.Y + this.rect.Size.Y;
-          
-            
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if(Type == ItemTileType.Blank)
                 spriteBatch.Draw(texture, Position, rect, Color.Transparent);

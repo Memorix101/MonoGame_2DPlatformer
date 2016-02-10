@@ -22,8 +22,8 @@ namespace MonoGame_2DPlatformer
     {
 
         Texture2D texture;
-        const float moveSpeed = 1f;
-        const float jumpForce = -5f;
+        const float moveSpeed = 2f;
+        const float jumpForce = -50f;
 
         Body rigidbody;
 
@@ -47,22 +47,14 @@ namespace MonoGame_2DPlatformer
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
 
-            /// Setup physics
-
-            // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
-            // 1 meters equals 64 pixels here
-
-            //rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width), ConvertUnits.ToSimUnits(playerRect.Height), 1f, ConvertUnits.ToSimUnits(this.Position));
+            // Setup physics
             rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Height/2), 1f, ConvertUnits.ToSimUnits(this.Position));
+            //Set rigidbody behaivior here
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.FixedRotation = true;
-            //rigidbody.Friction = 1f;
+            rigidbody.Restitution = 0f; // No bounciness
+            rigidbody.Friction = 5f;
             rigidbody.CollidesWith = Category.All;
-        
-
-            // Give it some bounce and friction
-            //rigidbody.Restitution = 0.3f;
-            //rigidbody.Friction = 0.5f;
         }
 
         public float Grav
@@ -107,13 +99,13 @@ namespace MonoGame_2DPlatformer
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                rigidbody.ApplyForce(new Vector2(-moveSpeed, 0f));
+                rigidbody.LinearVelocity = new Vector2(-moveSpeed, rigidbody.LinearVelocity.Y);
                 playerDir = PlayerDir.left;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                rigidbody.ApplyForce(new Vector2(moveSpeed, 0f));
+                rigidbody.LinearVelocity = new Vector2(moveSpeed, rigidbody.LinearVelocity.Y);
                 playerDir = PlayerDir.right;
             }
 

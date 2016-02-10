@@ -23,7 +23,6 @@ namespace MonoGame_2DPlatformer
         /// <summary>
         ///  public static pass "stuff"       
         /// </summary>
-        /// 
         public static GameTime _gameTime { get; private set; }
         public static GraphicsDeviceManager graphics { get; private set; }
         public static ContentManager content { get; private set; }
@@ -50,8 +49,9 @@ namespace MonoGame_2DPlatformer
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             Screen.fullScreen = false;
-            //     Screen.resolution(1280, 720);
-            
+            //Screen.resolution(1280, 720);
+            this.Window.Title = "MonoGame 2D Platformer";
+
         }
 
         protected override void Initialize()
@@ -112,35 +112,15 @@ namespace MonoGame_2DPlatformer
             {
 
                 // Farseer expects objects to be scaled to MKS (meters, kilos, seconds)
-                // 1 meters equals 64 pixels here
-                ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);
-                world = new World(new Vector2(0, 1));
+                ConvertUnits.SetDisplayUnitToSimUnitRatio(64f);  // 1 meters equals 64 pixels here
+
+                //Create a world with gravity.
+                world = new World(new Vector2(0, 9.82f));
             }
             else
             {
                 world.Clear();
             }
-
-
-            /*
-            if (DebugView == null)
-            {
-
-                Console.WriteLine("DEBUUUUUUUUUUUG!!!!");
-                
-                //projection = Matrix.CreateOrthographicOffCenter(0, ConvertUnits.ToSimUnits(Game1.graphics.GraphicsDevice.Viewport.Width), ConvertUnits.ToSimUnits(Game1.graphics.GraphicsDevice.Viewport.Height), 0, 0, 1);
-                //view = Matrix.Identity;
-                //Debug view
-                DebugView = new DebugViewXNA(world);
-                DebugView.RemoveFlags(DebugViewFlags.Shape);
-                DebugView.RemoveFlags(DebugViewFlags.DebugPanel);
-                DebugView.RemoveFlags(DebugViewFlags.Joint);
-                DebugView.DefaultShapeColor = Color.White;
-                DebugView.SleepingShapeColor = Color.LightGray;
-                DebugView.LoadContent(graphics.GraphicsDevice, Content);
-            }
-
-            */
         }
 
         protected override void Draw(GameTime gameTime)
