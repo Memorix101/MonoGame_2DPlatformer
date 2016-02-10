@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
+using FarseerPhysics.Dynamics.Contacts;
 
 using MonoGame_2DPlatformer.Core;
 
@@ -22,11 +23,11 @@ namespace MonoGame_2DPlatformer
     {
 
         Texture2D texture;
-        const float moveSpeed = 2f;
+        const float moveSpeed = 3f;
         const float jumpForce = -50f;
+        int jumpCount = 0;
 
         Body rigidbody;
-
         PlayerDir playerDir;
 
         private const float gravity = 50f;
@@ -53,8 +54,11 @@ namespace MonoGame_2DPlatformer
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.FixedRotation = true;
             rigidbody.Restitution = 0f; // No bounciness
-            rigidbody.Friction = 5f;
+            rigidbody.Friction = 1f;
+            rigidbody.CollisionCategories = Category.Cat2; // cat2 player
             rigidbody.CollidesWith = Category.All;
+
+            rigidbody.OnCollision += Rigidbody_OnCollision; // Tack collision
         }
 
         public float Grav
@@ -73,6 +77,18 @@ namespace MonoGame_2DPlatformer
             set { grounded = value; }
         }
 
+        public override Rectangle TileBoundingBox
+        {
+            get
+            {
+                return new Rectangle(
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.X),
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.Y),
+                    playerRect.Width,
+                    playerRect.Height);
+            }
+        }
+
         /// <summary>
         /// ///////
         /// </summary>
@@ -81,16 +97,33 @@ namespace MonoGame_2DPlatformer
         public void Update(GameTime gameTime)
         {
             this.Rect = playerRect;
-          //  this.Position = pos;
-          
+            GameDebug.Log("-" + jumpCount); 
             Input(gameTime);
+        }
+
+        private bool Rigidbody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            //  throw new NotImplementedException();
+
+            //TODO Raycast for grounded stuff
+
+            if (contact.IsTouching)
+            {
+                if (fixtureB.CollisionCategories == Category.Cat1)
+                {
+                    //GameDebug.Log("ASDASFASDGSD");
+                    jumpCount = 0;
+                   // isGrounded = true;
+                }
+            }
+
+            return true;
         }
 
         void Jump(GameTime gameTime)
         {
             if(!inAir)
-            {
-                // velocity.Y = 200f;             
+            {            
                 rigidbody.ApplyForce(new Vector2(0f, jumpForce));  
             }           
         }
@@ -115,13 +148,14 @@ namespace MonoGame_2DPlatformer
                 Jump(gameTime);
                 buttonDown = true;
             }
-            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown )//&& isGrounded && !inAir)
+            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown && jumpCount <= 1)//&& isGrounded && !inAir)
             {
                 GameDebug.Log("DO NOT JUMP!!!!!");
+                jumpCount++;
                 buttonDown = false;
             }
 
-            Console.WriteLine("JUMP" + inAir + grounded);
+        //    Console.WriteLine("JUMP" + inAir + grounded);
             // p_pos.X += moveSpeed * Time.DeltaTime;
         }
 

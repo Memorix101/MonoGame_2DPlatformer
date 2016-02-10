@@ -124,38 +124,6 @@ namespace MonoGame_2DPlatformer
 
        //     ray.Position = new Vector3(player.Position.X + player.Rect.Width/2, player.Position.Y + player.Rect.Height, 0);
             ray.Direction = new Vector3(0, 1, 0);
-            
-            bool intersect = false;
-
-            foreach (ItemTile o in mapItems)
-            {
-
-                /*
-                if (player.TileBoundingBox.Intersects(o.TileBoundingBox) && o.Type == ItemTileType.Block)
-                {
-                    intersect = true;
-                    player.isGrounded = intersect;
-                }
-                else if (!intersect)
-                {
-                    player.isGrounded = intersect;
-                }
-                
-                float distance = 5 + player.Velocity.Y * Time.DeltaTime;
-
-                var result = ray.Intersects(o.BoundingBox);
-
-                if (result.HasValue && result.Value < distance && o.Type == ItemTileType.Block)
-                {
-                    intersect = true;
-                    player.isGrounded = intersect;
-                }
-                else if (!intersect)
-                {
-                    player.isGrounded = intersect;
-                }
-                */
-            }
 
             for (int i = mapCoins.Count - 1; i >= 0; i--)
             {
@@ -164,6 +132,7 @@ namespace MonoGame_2DPlatformer
                 if (mapCoins[i].TileBoundingBox.Intersects(player.TileBoundingBox))
                 {
                     coins += 1;
+                    mapCoins[i].rigidbody.Dispose();
                     mapCoins.RemoveAt(i);
                 }
             }

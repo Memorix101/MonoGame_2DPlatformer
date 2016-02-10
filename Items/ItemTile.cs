@@ -48,6 +48,7 @@ namespace MonoGame_2DPlatformer
                 rigidbody.BodyType = BodyType.Kinematic;
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
+            rigidbody.CollisionCategories = Category.Cat1; // <- cat2 is floor cat
 
             LoadBlock(p);
         }
@@ -70,8 +71,8 @@ namespace MonoGame_2DPlatformer
             get
             {
                 return new Rectangle(
-                    (int)Position.X,
-                    (int)Position.Y,
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.X),
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.Y),
                     rect.Width,
                     rect.Height);
             }

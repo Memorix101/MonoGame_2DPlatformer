@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
+using FarseerPhysics.Dynamics.Contacts;
 
 
 using MonoGame_2DPlatformer.Core;
@@ -22,7 +23,7 @@ namespace MonoGame_2DPlatformer
         Texture2D texture;
         //Vector2 p_pos;
         Rectangle coinRect = new Rectangle(0, 0, 32, 32);
-        Body rigidbody;
+       public Body rigidbody;
 
         float speed = 10f;
 
@@ -39,7 +40,15 @@ namespace MonoGame_2DPlatformer
             rigidbody.BodyType = BodyType.Static;
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
+            rigidbody.CollisionCategories = Category.Cat3; // cat3 is coins
 
+            rigidbody.OnCollision += Rigidbody_OnCollision;
+        }
+
+        private bool Rigidbody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        {
+            //  throw new NotImplementedException();
+            return false;
         }
 
         public void Update(GameTime gameTime)

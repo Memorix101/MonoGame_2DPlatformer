@@ -22,6 +22,7 @@ namespace MonoGame_2DPlatformer
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.Restitution = 0.3f;
             rigidbody.Friction = 0.5f;
+            rigidbody.CollisionCategories = Category.Cat1; // default
             rigidbody.CollidesWith = Category.All;
         }
 
