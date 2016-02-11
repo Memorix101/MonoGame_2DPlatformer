@@ -101,7 +101,7 @@ namespace MonoGame_2DPlatformer
             Input(gameTime);
         }
 
-        private bool Rigidbody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
 
@@ -109,7 +109,7 @@ namespace MonoGame_2DPlatformer
 
             if (contact.IsTouching)
             {
-                if (fixtureB.CollisionCategories == Category.Cat1)
+                if (other.CollisionCategories == Category.Cat1)
                 {
                     //GameDebug.Log("ASDASFASDGSD");
                     jumpCount = 0;

@@ -45,7 +45,7 @@ namespace MonoGame_2DPlatformer
             rigidbody.OnCollision += Rigidbody_OnCollision;
         }
 
-        private bool Rigidbody_OnCollision(Fixture fixtureA, Fixture fixtureB, Contact contact)
+        private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
             return false;
