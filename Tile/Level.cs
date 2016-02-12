@@ -34,6 +34,8 @@ namespace MonoGame_2DPlatformer
 
         int coins = 0;
 
+        float abc = 8;
+
         //level loader
         public void LoadLevel(string name)
         {
@@ -46,6 +48,7 @@ namespace MonoGame_2DPlatformer
 
             mapItems = new List<ItemTile>();
             mapCoins = new List<Coins>();
+
 
             string filePath = Game1.content.RootDirectory.ToString() + "\\Levels\\" + name;
 
@@ -99,7 +102,6 @@ namespace MonoGame_2DPlatformer
             testActor.Update();
             player.Update(gameTime);
             CheckCollision(gameTime);
-
        //     Collision(player.TileBoundingBox);
 
         }
@@ -139,18 +141,32 @@ namespace MonoGame_2DPlatformer
             
         }
 
+        public void HUD(SpriteBatch spriteBatch)
+        {
+            coinFont.Draw(spriteBatch);
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
-            Matrix view = Matrix.Identity;
-            view = Matrix.CreateTranslation(8, 8, 0); // correction the view after Farseer pixels to meter convertation
-            Matrix view2 = Matrix.CreateScale(32); //default 32
-            view2 *= view;
-            Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-        //          spriteBatch.Draw(clouds, screenRectangle, Color.White);
-          //        spriteBatch.Draw(mountains, screenRectangle, Color.White);
+            
+          //  Matrix debugProj = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
+            
+          //  Matrix view = Matrix.Identity;
 
-            coinFont.Draw(spriteBatch);
+            /*
+             view = Matrix.CreateTranslation(abc, 8, 0); // correction the view after Farseer pixels to meter convertation
+             Matrix view2 = Matrix.CreateScale(32); //default 32
+             view2 *= view;
+             */
+     
+            Matrix view2 = Matrix.CreateScale(32); //default 32
+            view2 *= Game1.DebugCam.view;
+
+            Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
+           //  spriteBatch.Draw(clouds, screenRectangle, Color.White);
+           //  spriteBatch.Draw(mountains, screenRectangle, Color.White);
+
+           
 
             foreach (ItemTile it in mapItems)
             {
@@ -169,13 +185,13 @@ namespace MonoGame_2DPlatformer
             physicsDebug.SleepingShapeColor = Color.Green;
             physicsDebug.StaticShapeColor = Color.Violet;
             physicsDebug.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
-            physicsDebug.RenderDebugData(ref projection, ref view2);
+            physicsDebug.RenderDebugData(ref Game1.DebugCam.projection, ref view2);
 
             player.Draw(spriteBatch);
             testActor.Draw(spriteBatch);
 
             SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
-            spriteBatch.DrawLine(new Vector2(ray.Position.X, ray.Position.Y), new Vector2(ray.Position.X + ray.Direction.X, ray.Position.Y + ray.Direction.Y), Color.Red);
+          //  spriteBatch.DrawLine(new Vector2(ray.Position.X, ray.Position.Y), new Vector2(ray.Position.X + ray.Direction.X, ray.Position.Y + ray.Direction.Y), Color.Red);
         }
 
     }

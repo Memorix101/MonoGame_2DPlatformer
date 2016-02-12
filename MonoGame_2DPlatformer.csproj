@@ -41,8 +41,10 @@
   <ItemGroup>
     <Compile Include="Actor\Player.cs" />
     <Compile Include="Actor\TestActor.cs" />
+    <Compile Include="Core\Camera2D.cs" />
     <Compile Include="Core\GameDebug.cs" />
     <Compile Include="Core\GUI.cs" />
+    <Compile Include="Core\PhysicsDebugCam.cs" />
     <Compile Include="Core\Screen.cs" />
     <Compile Include="Core\SpriteBatchEx.cs" />
     <Compile Include="Core\Time.cs" />

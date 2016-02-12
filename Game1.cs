@@ -27,7 +27,9 @@ namespace MonoGame_2DPlatformer
         public static GraphicsDeviceManager graphics { get; private set; }
         public static ContentManager content { get; private set; }
         public static World world { get; private set; }
-       // public static DebugViewXNA DebugView { get; private set; }
+        public static Camera2D camera { get; private set;}
+        public static PhysicsDebugCam DebugCam { get; private set; }
+        // public static DebugViewXNA DebugView { get; private set; }
         /// <summary>
         /// Declare your stuff here
         /// </summary>
@@ -59,7 +61,8 @@ namespace MonoGame_2DPlatformer
             ///GameDebug.Log("Hello World");
 
             level = new Level();
-
+            camera = new Camera2D();
+            DebugCam = new PhysicsDebugCam();
             testText = new GUI();
             testText.Text(some_text);
 
@@ -71,7 +74,7 @@ namespace MonoGame_2DPlatformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
+         //   ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
             //  MediaPlayer.Play(ms_rainbow_ride);
 
             PhysicLoad();
@@ -98,6 +101,9 @@ namespace MonoGame_2DPlatformer
                 Exit();
                         
             world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
+
+            camera.Update();
+            DebugCam.Update();
 
             level.Update(gameTime);
 
@@ -126,20 +132,15 @@ namespace MonoGame_2DPlatformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
-
-
-            /// CURRENT FAKE CAMERA
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
-            Matrix view = Matrix.Identity;
-
-            view = Matrix.CreateTranslation(16, 16, 0); // correction the view after Farseer pixels to meter convertation
-
-            Matrix view2 = Matrix.CreateScale(32);
-            view2 *= view;
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, view);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.GetMatrix);
             level.Draw(spriteBatch);
+            spriteBatch.End();
+
+            //GUI Stuff
+
+            spriteBatch.Begin();
             testText.Draw(spriteBatch);
+            level.HUD(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

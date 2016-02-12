@@ -33,12 +33,10 @@ namespace MonoGame_2DPlatformer
         private const float gravity = 50f;
 
      //   float airTime;
-
         Rectangle playerRect = new Rectangle(0, 0, 32, 32);
 
         bool buttonDown;
         bool grounded;
-        Vector2 velocity;
         bool inAir;
 
         public Player(Vector2 p)
@@ -64,11 +62,6 @@ namespace MonoGame_2DPlatformer
         public float Grav
         {
             get { return gravity; }
-        }
-
-        public Vector2 Velocity
-        {
-            get { return velocity; }
         }
 
         public bool isGrounded
@@ -97,7 +90,10 @@ namespace MonoGame_2DPlatformer
         public void Update(GameTime gameTime)
         {
             this.Rect = playerRect;
-            GameDebug.Log("-" + jumpCount); 
+  
+            GameDebug.Log("-" + jumpCount + " - ");
+
+            CameraBounds();
             Input(gameTime);
         }
 
@@ -118,6 +114,21 @@ namespace MonoGame_2DPlatformer
             }
 
             return true;
+        }
+
+        void CameraBounds()
+        {
+            float _pos = rigidbody.Position.X;
+            float _posMax = ConvertUnits.ToSimUnits(Game1.camera.offsetRight - Rect.Width);
+            float _posMin = ConvertUnits.ToSimUnits(Game1.camera.offsetLeft - Rect.Width);
+            _pos = MathHelper.Clamp(rigidbody.Position.X, 0, rigidbody.Position.X);
+            rigidbody.Position = new Vector2(_pos, rigidbody.Position.Y);
+
+            if(rigidbody.Position.X >= _posMax)
+            {
+                Game1.camera.UpdatePos(ConvertUnits.ToDisplayUnits(rigidbody.Position.X));
+                Game1.DebugCam.UpdatePos();
+            }
         }
 
         void Jump(GameTime gameTime)

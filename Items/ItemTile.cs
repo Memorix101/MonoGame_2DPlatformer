@@ -93,7 +93,6 @@ namespace MonoGame_2DPlatformer
                     this.LayerDepth = layer;
                     rigidbody.CollidesWith = Category.All;
                     break;
-
             }
         }
 

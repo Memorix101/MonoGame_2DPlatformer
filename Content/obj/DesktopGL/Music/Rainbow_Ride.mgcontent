@@ -3,11 +3,11 @@
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Music/Rainbow_Ride.mp3</SourceFile>
   <SourceTime>2016-02-08T00:28:40.3607398+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Music/Rainbow_Ride.xnb</DestFile>
-  <DestTime>2016-02-08T03:46:25.3632459+01:00</DestTime>
+  <DestTime>2016-02-12T02:46:56.8454916+01:00</DestTime>
   <Importer>Mp3Importer</Importer>
-  <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
-  <ProcessorTime>2016-02-02T20:57:06+01:00</ProcessorTime>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>

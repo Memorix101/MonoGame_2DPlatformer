@@ -3,11 +3,11 @@
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/clouds.png</SourceFile>
   <SourceTime>2016-02-08T00:28:40.3837548+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/clouds.xnb</DestFile>
-  <DestTime>2016-02-08T03:46:25.4262896+01:00</DestTime>
+  <DestTime>2016-02-12T02:46:57.4298826+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2016-02-02T20:57:06+01:00</ProcessorTime>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

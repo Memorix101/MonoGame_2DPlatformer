@@ -3,11 +3,11 @@
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/RetroPixel.spritefont</SourceFile>
   <SourceTime>2016-02-08T00:28:40.3297188+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Fonts/RetroPixel.xnb</DestFile>
-  <DestTime>2016-02-08T03:46:21.9370949+01:00</DestTime>
+  <DestTime>2016-02-12T02:46:51.5994343+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2016-02-02T20:57:06+01:00</ProcessorTime>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>

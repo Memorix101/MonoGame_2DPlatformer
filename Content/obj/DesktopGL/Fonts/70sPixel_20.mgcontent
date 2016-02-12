@@ -3,11 +3,11 @@
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Fonts/70sPixel_20.spritefont</SourceFile>
   <SourceTime>2016-02-08T00:28:40.3167107+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Fonts/70sPixel_20.xnb</DestFile>
-  <DestTime>2016-02-08T03:46:25.8025397+01:00</DestTime>
+  <DestTime>2016-02-12T02:46:58.0037653+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2016-02-02T20:57:06+01:00</ImporterTime>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2016-02-02T20:57:06+01:00</ProcessorTime>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>
