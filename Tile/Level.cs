@@ -18,11 +18,15 @@ namespace MonoGame_2DPlatformer
 {
     class Level
     {
-
+        //Sky and Background
         Texture2D sky;
         Texture2D clouds;
+        Texture2D clouds2;
         Texture2D mountains;
-
+        float cloudMove;
+        float cloudMove2;
+        Vector2 cloudOrigin;
+        Vector2 cloudOrigin2;
         Player player;
         TestActor testActor;
 
@@ -31,13 +35,9 @@ namespace MonoGame_2DPlatformer
         List<ItemTile> mapItems;
         List<Coins> mapCoins;
 
-        GUI coinFont = new GUI();
-        float cloudMove;
-        Vector2 cloudOrigin;
+        GUI coinFont = new GUI();      
 
         int coins = 0;
-
-        float abc = 8;
 
         //level loader
         public void LoadLevel(string name)
@@ -45,6 +45,7 @@ namespace MonoGame_2DPlatformer
 
             sky = Game1.content.Load<Texture2D>("Sprites/sky");
             clouds = Game1.content.Load<Texture2D>("Sprites/clouds");
+            clouds2 = Game1.content.Load<Texture2D>("Sprites/clouds");
             mountains = Game1.content.Load<Texture2D>("Sprites/mountains");
 
             coinFont.Load("Fonts/70sPixel_20");
@@ -155,33 +156,37 @@ namespace MonoGame_2DPlatformer
         {
             Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
             spriteBatch.Draw(sky, screenRectangle, Color.White);
-            spriteBatch.Draw(clouds, screenRectangle, null, Color.White, 0f, cloudOrigin, SpriteEffects.None, 0);
+           spriteBatch.Draw(clouds, screenRectangle, null, Color.WhiteSmoke, 0f, cloudOrigin, SpriteEffects.FlipHorizontally, 0);
+            spriteBatch.Draw(clouds2, screenRectangle, null, Color.White, 0f, cloudOrigin2, SpriteEffects.None, 0);
             spriteBatch.Draw(mountains, screenRectangle, Color.White);
         }
 
         void MoveClouds()
         {
+
+            // This stuff is ugly !!!!
+
+            const float speed = 1f;
+            const float offset = 300f;
             cloudOrigin = new Vector2(cloudMove, 0);
-            cloudMove += 1 * Time.DeltaTime;
+            cloudOrigin2 = new Vector2(cloudMove2 + offset, 0);
+
+            cloudMove += speed * Time.DeltaTime;
+            cloudMove2 += speed * Time.DeltaTime;
+
+            if (cloudOrigin.X >= clouds.Width)
+            {
+                cloudMove = -clouds.Width;
+            }
+
+            if (cloudOrigin2.X >= clouds2.Width)
+            {
+                cloudMove2 = -clouds2.Width - offset;
+            }
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            
-          //  Matrix debugProj = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
-            
-          //  Matrix view = Matrix.Identity;
-
-            /*
-             view = Matrix.CreateTranslation(abc, 8, 0); // correction the view after Farseer pixels to meter convertation
-             Matrix view2 = Matrix.CreateScale(32); //default 32
-             view2 *= view;
-             */
-     
-            Matrix view2 = Matrix.CreateScale(32); //default 32
-            view2 *= Game1.DebugCam.view;
-          
-
             foreach (ItemTile it in mapItems)
             {
                 it.Draw(spriteBatch);
@@ -191,17 +196,7 @@ namespace MonoGame_2DPlatformer
             {
               c.Draw(spriteBatch);
             }
-
             
-            DebugViewXNA physicsDebug;
-            physicsDebug = new DebugViewXNA(Game1.world);
-            physicsDebug.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
-            physicsDebug.DefaultShapeColor = Color.Red;
-            physicsDebug.SleepingShapeColor = Color.Green;
-            physicsDebug.StaticShapeColor = Color.Violet;
-            physicsDebug.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
-            physicsDebug.RenderDebugData(ref Game1.DebugCam.projection, ref view2);
-
             player.Draw(spriteBatch);
             testActor.Draw(spriteBatch);
 

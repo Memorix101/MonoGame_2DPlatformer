@@ -133,16 +133,22 @@ namespace MonoGame_2DPlatformer
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
 
+         
             //Sky
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
             level.Sky(spriteBatch);
             spriteBatch.End();
 
-            ///
+
+            // Level stuff
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.view);
             level.Draw(spriteBatch);
             spriteBatch.End();
+
+          #if DEBUG
+            DebugDraw();
+          #endif
 
             //GUI Stuff
 
@@ -153,6 +159,21 @@ namespace MonoGame_2DPlatformer
 
 
             base.Draw(gameTime);
+        }
+
+        void DebugDraw()
+        {
+            Matrix view2 = Matrix.CreateScale(32); //default 32
+            view2 *= Game1.DebugCam.view;
+
+            DebugViewXNA physicsDebug;
+            physicsDebug = new DebugViewXNA(Game1.world);
+            physicsDebug.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
+            physicsDebug.DefaultShapeColor = Color.Red;
+            physicsDebug.SleepingShapeColor = Color.Green;
+            physicsDebug.StaticShapeColor = Color.Violet;
+            physicsDebug.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
+            physicsDebug.RenderDebugData(ref Game1.DebugCam.projection, ref view2);
         }
 
 

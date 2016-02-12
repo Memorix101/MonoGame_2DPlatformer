@@ -31,7 +31,7 @@ namespace MonoGame_2DPlatformer.Core
 
         public float offsetRight
         {
-            get { return Game1.graphics.GraphicsDevice.Viewport.Bounds.Right / 2; }
+            get { return Game1.graphics.GraphicsDevice.Viewport.Bounds.Right / 2 - 16; }
         }
 
         public float offsetLeft
