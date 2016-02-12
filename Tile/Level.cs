@@ -19,6 +19,7 @@ namespace MonoGame_2DPlatformer
     class Level
     {
 
+        Texture2D sky;
         Texture2D clouds;
         Texture2D mountains;
 
@@ -31,6 +32,8 @@ namespace MonoGame_2DPlatformer
         List<Coins> mapCoins;
 
         GUI coinFont = new GUI();
+        float cloudMove;
+        Vector2 cloudOrigin;
 
         int coins = 0;
 
@@ -40,6 +43,7 @@ namespace MonoGame_2DPlatformer
         public void LoadLevel(string name)
         {
 
+            sky = Game1.content.Load<Texture2D>("Sprites/sky");
             clouds = Game1.content.Load<Texture2D>("Sprites/clouds");
             mountains = Game1.content.Load<Texture2D>("Sprites/mountains");
 
@@ -101,6 +105,7 @@ namespace MonoGame_2DPlatformer
 
             testActor.Update();
             player.Update(gameTime);
+            MoveClouds();
             CheckCollision(gameTime);
        //     Collision(player.TileBoundingBox);
 
@@ -146,6 +151,20 @@ namespace MonoGame_2DPlatformer
             coinFont.Draw(spriteBatch);
         }
 
+        public void Sky(SpriteBatch spriteBatch)
+        {
+            Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
+            spriteBatch.Draw(sky, screenRectangle, Color.White);
+            spriteBatch.Draw(clouds, screenRectangle, null, Color.White, 0f, cloudOrigin, SpriteEffects.None, 0);
+            spriteBatch.Draw(mountains, screenRectangle, Color.White);
+        }
+
+        void MoveClouds()
+        {
+            cloudOrigin = new Vector2(cloudMove, 0);
+            cloudMove += 1 * Time.DeltaTime;
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             
@@ -161,12 +180,7 @@ namespace MonoGame_2DPlatformer
      
             Matrix view2 = Matrix.CreateScale(32); //default 32
             view2 *= Game1.DebugCam.view;
-
-            Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-           //  spriteBatch.Draw(clouds, screenRectangle, Color.White);
-           //  spriteBatch.Draw(mountains, screenRectangle, Color.White);
-
-           
+          
 
             foreach (ItemTile it in mapItems)
             {
@@ -178,6 +192,7 @@ namespace MonoGame_2DPlatformer
               c.Draw(spriteBatch);
             }
 
+            
             DebugViewXNA physicsDebug;
             physicsDebug = new DebugViewXNA(Game1.world);
             physicsDebug.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);

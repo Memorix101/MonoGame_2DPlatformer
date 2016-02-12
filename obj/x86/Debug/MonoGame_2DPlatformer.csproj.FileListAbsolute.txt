@@ -62,3 +62,4 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\OpenTK.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.csprojResolveAssemblyReference.cache
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.exe
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.pdb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\sky.xnb

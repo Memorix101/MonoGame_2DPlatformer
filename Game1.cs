@@ -132,7 +132,15 @@ namespace MonoGame_2DPlatformer
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.GetMatrix);
+
+            //Sky
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+            level.Sky(spriteBatch);
+            spriteBatch.End();
+
+            ///
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.view);
             level.Draw(spriteBatch);
             spriteBatch.End();
 
@@ -142,6 +150,7 @@ namespace MonoGame_2DPlatformer
             testText.Draw(spriteBatch);
             level.HUD(spriteBatch);
             spriteBatch.End();
+
 
             base.Draw(gameTime);
         }

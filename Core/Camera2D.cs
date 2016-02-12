@@ -12,8 +12,8 @@ namespace MonoGame_2DPlatformer.Core
 {
     public class Camera2D
     {
-        Matrix view;
-        Matrix projection;
+       public Matrix view;
+       public Matrix projection;
         float PosX = 16f;
         float PosY = 16f;
         Vector2 Pos;
@@ -28,10 +28,6 @@ namespace MonoGame_2DPlatformer.Core
             Pos = new Vector2(PosX, PosY); //
         }
 
-        public Matrix GetMatrix
-        {
-            get { return view; }
-        }
 
         public float offsetRight
         {

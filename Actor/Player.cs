@@ -120,7 +120,8 @@ namespace MonoGame_2DPlatformer
         {
             float _pos = rigidbody.Position.X;
             float _posMax = ConvertUnits.ToSimUnits(Game1.camera.offsetRight - Rect.Width);
-            float _posMin = ConvertUnits.ToSimUnits(Game1.camera.offsetLeft - Rect.Width);
+            float _posMin = ConvertUnits.ToSimUnits(Game1.camera.offsetLeft + Rect.Width);
+
             _pos = MathHelper.Clamp(rigidbody.Position.X, 0, rigidbody.Position.X);
             rigidbody.Position = new Vector2(_pos, rigidbody.Position.Y);
 
