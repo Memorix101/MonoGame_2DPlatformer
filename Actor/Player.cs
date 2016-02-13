@@ -27,20 +27,22 @@ namespace MonoGame_2DPlatformer
         const float moveSpeed = 3f;
         const float jumpForce = -50f;
         int jumpCount = 0;
+        float distance = 0.5f;
 
         Body rigidbody;
         PlayerDir playerDir;
 
         private const float gravity = 50f;
 
-        Rectangle playerRect = new Rectangle(0, 0, 32, 32);
+       // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
+        Rectangle playerRect = new Rectangle(512, 673, 32, 32);
 
         bool buttonDown;
         bool grounded;
 
         public Player(Vector2 p)
         {
-            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/wheelie_right");
+            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
             this.Position = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
@@ -91,14 +93,22 @@ namespace MonoGame_2DPlatformer
         {
             this.Rect = playerRect;
 
-            GameDebug.Log("-" + jumpCount + " - " + isGrounded);
+            GameDebug.Log("-" + rigidbody.Friction.ToString());
+
+            Raycast();
 
             if (isGrounded)
             {
+                  //  rigidbody.Friction = 1;
                 jumpCount = 0;
+                GameDebug.Log(isGrounded.ToString());
             }
-
-            Raycast();
+            else
+            {
+                  //  rigidbody.Friction = 0f;
+                GameDebug.Log(isGrounded.ToString());
+            }
+            
             CameraBounds();
             Input(gameTime);
         }
@@ -130,7 +140,7 @@ namespace MonoGame_2DPlatformer
                 return 0;
             };
 
-            Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(0, 0.35f));
+            Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(0, distance)); //* (Math.Abs(rigidbody.LinearVelocity.Y) + 1)
         }
 
         void CameraBounds()
@@ -150,9 +160,11 @@ namespace MonoGame_2DPlatformer
         }
 
         void Jump(GameTime gameTime)
-        {        
+        {
             if (jumpCount <= 1)
-            rigidbody.ApplyForce(new Vector2(0f, jumpForce));        
+            {
+                rigidbody.ApplyForce(new Vector2(0f, jumpForce));
+            }
         }
 
         private void Input(GameTime gameTime)
@@ -196,7 +208,7 @@ namespace MonoGame_2DPlatformer
             
 #if DEBUG
             SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
-            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, 0.35f)), Color.Red);
+            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, distance)), Color.Red);
 #endif
 
         }

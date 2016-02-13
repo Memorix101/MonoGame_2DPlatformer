@@ -32,7 +32,7 @@ namespace MonoGame_2DPlatformer
 
         public Coins(Vector2 p)
         {
-            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/coins_gold");
+            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/gfxlib/coins_gold");
             this.Position = p;
 
             //Set rigidbody behaivior here

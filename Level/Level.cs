@@ -52,12 +52,13 @@ namespace MonoGame_2DPlatformer
 
         public static void Init()
         {
-            sky = Game1.content.Load<Texture2D>("Sprites/gfxlib/sky");
-            clouds = Game1.content.Load<Texture2D>("Sprites/gfxlib/clouds");
-            clouds2 = Game1.content.Load<Texture2D>("Sprites/gfxlib/clouds");
-            mountains = Game1.content.Load<Texture2D>("Sprites/gfxlib/mountains");
+            sky = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
+            clouds = Game1.content.Load<Texture2D>("Sprites/clouds");
+            clouds2 = Game1.content.Load<Texture2D>("Sprites/clouds");
+            mountains = Game1.content.Load<Texture2D>("Sprites/mountains");
 
             coinFont.Load("Fonts/70sPixel_20");
+            coinFont.Position = new Vector2(5, 5);
             coinFont.Color = Color.OrangeRed;
         }
 
@@ -161,8 +162,9 @@ namespace MonoGame_2DPlatformer
         public static void Sky(SpriteBatch spriteBatch)
         {
             Rectangle screenRectangle = new Rectangle(0, 0, Screen.width, Screen.height);
-            spriteBatch.Draw(sky, screenRectangle, Color.White);
-           spriteBatch.Draw(clouds, screenRectangle, null, Color.WhiteSmoke, 0f, cloudOrigin, SpriteEffects.FlipHorizontally, 0);
+            Rectangle skyRect = new Rectangle(930, 34, 16*32, 8*32);
+            spriteBatch.Draw(sky, screenRectangle, skyRect, Color.White);
+            spriteBatch.Draw(clouds, screenRectangle, null, Color.WhiteSmoke, 0f, cloudOrigin, SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(clouds2, screenRectangle, null, Color.White, 0f, cloudOrigin2, SpriteEffects.None, 0);
             spriteBatch.Draw(mountains, screenRectangle, Color.White);
         }

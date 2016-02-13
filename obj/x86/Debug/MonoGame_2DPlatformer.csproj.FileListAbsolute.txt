@@ -33,15 +33,9 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_75.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\Pixel.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\RetroPixel.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\Rainbow_Ride.ogg
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\Rainbow_Ride.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\clouds.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\coins_gold.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gem_20_points.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\mountains.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\tileset.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_left.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_right.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\box.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\razer.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\sir.xnb
@@ -62,13 +56,22 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.pdb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\sky.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\title.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\TuxJR.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\menu.map
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.ogg
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\page_background.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\clouds.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\lvl_tileset.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\sky.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\tileset.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\mountains.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\kenney_32x32.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\custom\TuxJR.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\custom\Tux_Junior_Walk_Template.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\coins_gold.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\gem_20_points.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\page_background.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\wheelie_left.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\wheelie_right.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\Jason-Em\Green bot sprites.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\Jason-Em\Items.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\Jason-Em\Old enemies 2.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\Jason-Em\Tiles.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\area04_bkg0.xnb

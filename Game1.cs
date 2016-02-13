@@ -79,7 +79,7 @@ namespace MonoGame_2DPlatformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
+           // ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
           //  MediaPlayer.Play(ms_rainbow_ride);
             
             testText.Load("Fonts\\Pixel");

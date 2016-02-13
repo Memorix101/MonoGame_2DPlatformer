@@ -33,7 +33,7 @@ namespace MonoGame_2DPlatformer
 
         public ItemTile(Vector2 p, float l, ItemTileType t)
         {
-            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/gfxlib/tileset");
+            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
             this.Position = p;
             layer = l;
             type = t;
@@ -41,7 +41,8 @@ namespace MonoGame_2DPlatformer
             if (t == ItemTileType.Blank)
                 rect = new Rectangle(0, 0, 1, 1);
             else if (t == ItemTileType.Block)
-                rect = new Rectangle(290, 160, 32, 32);
+                rect = new Rectangle(1473, 702, 32, 32);
+            // rect = new Rectangle(290, 160, 32, 32);
             //rect = new Rectangle(12, 0, 32, 32);
 
             //Set rigidbody behaivior here

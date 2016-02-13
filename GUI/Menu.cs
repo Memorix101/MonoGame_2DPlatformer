@@ -42,7 +42,7 @@ namespace MonoGame_2DPlatformer
         {
 
             title = Game1.content.Load<Texture2D>("Sprites/title");
-            background = Game1.content.Load<Texture2D>("Sprites/page_background");
+            background = Game1.content.Load<Texture2D>("Sprites/gfxlib/area04_bkg0");
             copyright = new GUI("A Game by Memorix101");
             copyright.Load("Fonts\\Pixel");
             copyright.Position = new Vector2(Screen.width / 2 - copyright.Size.X / 2, Screen.height - copyright.Size.Y);
