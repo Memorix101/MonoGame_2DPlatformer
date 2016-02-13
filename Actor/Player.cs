@@ -23,20 +23,6 @@ namespace MonoGame_2DPlatformer
 
     class Player : Sprite
     {
-
-        float _angle;
-        float l;
-        Vector2 point1;
-        Vector2 d;
-        Vector2 point2;
-        Vector2 normal;
-        Vector2 point;
-        bool hitClosest;
-
-        /// <summary>
-        /// /
-        /// </summary>
-
         Texture2D texture;
         const float moveSpeed = 3f;
         const float jumpForce = -50f;
@@ -47,12 +33,10 @@ namespace MonoGame_2DPlatformer
 
         private const float gravity = 50f;
 
-        //   float airTime;
         Rectangle playerRect = new Rectangle(0, 0, 32, 32);
 
         bool buttonDown;
         bool grounded;
-        bool inAir;
 
         public Player(Vector2 p)
         {
@@ -107,19 +91,12 @@ namespace MonoGame_2DPlatformer
         {
             this.Rect = playerRect;
 
-            GameDebug.Log("-" + jumpCount + " - ");
-            ////
+            GameDebug.Log("-" + jumpCount + " - " + isGrounded);
 
-            _angle = 0f;
-            l = 11.0f;
-            point1 = new Vector2(0.0f, 10.0f);
-            d = new Vector2(l * (float)Math.Cos(_angle), l * (float)Math.Sin(_angle));
-            point2 = point1 + d;
-
-            point = ConvertUnits.ToDisplayUnits(rigidbody.Position);
-            normal = Vector2.Zero;
-
-            ////
+            if (isGrounded)
+            {
+                jumpCount = 0;
+            }
 
             Raycast();
             CameraBounds();
@@ -129,74 +106,31 @@ namespace MonoGame_2DPlatformer
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
-
-            //TODO Raycast for grounded stuff
-
+          /*
             if (contact.IsTouching)
             {
                 //  if (other.CollisionCategories == Category.Cat1)
                 if (other.CollisionCategories == Category.Cat1)
                 {
-                    //GameDebug.Log("ASDASFASDGSD");
                     jumpCount = 0;
                     // isGrounded = true;
                 }
             }
+            */
 
             return true;
         }
 
         void Raycast()
         {
-            Game1.world.RayCast((f, p, n, fr) =>
+            isGrounded = false;
+            Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
             {
-                Body body = f.Body;
-                if (body.UserData != null)
-                {
-                    int index = (int)body.UserData;
-                    if (index == 0)
-                    {
-                        // filter
-                        return -1.0f;
-                    }
-                }
+                isGrounded = true;
+                return 0;
+            };
 
-                hitClosest = true;
-                point = p;
-                normal = n;
-                return fr;
-            }, point1, point2);
-
-            if (hitClosest)
-            {
-                GameDebug.Log("CASE IF");
-                /*
-                Game1.DebugView.BeginCustomDraw(ref Game1.camera.projection, ref Game1.camera.view);
-                Game1.DebugView.DrawPoint(point, .5f, new Color(0.4f, 0.9f, 0.4f)); 
-
-                Game1.DebugView.DrawSegment(point1, point, new Color(0.8f, 0.8f, 0.8f));
-                Vector2 head = point + 0.5f * normal;
-                Game1.DebugView.DrawSegment(point, head, new Color(0.9f, 0.9f, 0.4f));
-                Game1.DebugView.EndCustomDraw();
-                */
-            }
-            else
-            {
-
-                GameDebug.Log("CASE ELSE");
-
-
-                /*
-                Matrix view2 = Matrix.CreateScale(32); //default 32
-                view2 *= Game1.DebugCam.view;
-
-                Game1.DebugView.BeginCustomDraw(ref Game1.camera.projection, ref view2);
-                Game1.DebugView.DrawString(0,0,"Press 1-5 to drop stuff, m to change the mode");
-                Game1.DebugView.DrawSegment(point1, point2, new Color(0.8f, 0.8f, 0.8f));
-                Game1.DebugView.EndCustomDraw();
-                */
-            }
-
+            Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(0, 0.35f));
         }
 
         void CameraBounds()
@@ -216,11 +150,9 @@ namespace MonoGame_2DPlatformer
         }
 
         void Jump(GameTime gameTime)
-        {
-            if(!inAir)
-            {            
-                rigidbody.ApplyForce(new Vector2(0f, jumpForce));  
-            }           
+        {        
+            if (jumpCount <= 1)
+            rigidbody.ApplyForce(new Vector2(0f, jumpForce));        
         }
 
         private void Input(GameTime gameTime)
@@ -240,11 +172,11 @@ namespace MonoGame_2DPlatformer
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && !buttonDown)
             {
                 GameDebug.Log("JUMP!!!!");
-                Jump(gameTime);
                 jumpCount += 1;
+                Jump(gameTime);
                 buttonDown = true;
             }
-            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown && jumpCount <= 1)//&& isGrounded && !inAir)
+            else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown)
             {
                 GameDebug.Log("DO NOT JUMP!!!!!");
                 buttonDown = false;
@@ -254,11 +186,6 @@ namespace MonoGame_2DPlatformer
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-#if DEBUG
-            SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
-            spriteBatch.DrawLine(point1, point2, Color.Yellow);
-#endif
-
             if (playerDir == PlayerDir.left)
             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
                 new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
@@ -266,6 +193,12 @@ namespace MonoGame_2DPlatformer
              spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
                  new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.None, LayerDepth);
             //base.Draw(spriteBatch);
+            
+#if DEBUG
+            SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
+            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, 0.35f)), Color.Red);
+#endif
+
         }
     }
 }
