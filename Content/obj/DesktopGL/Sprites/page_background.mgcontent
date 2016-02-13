@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/title.png</SourceFile>
-  <SourceTime>2016-02-13T12:03:31.6352717+01:00</SourceTime>
-  <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/title.xnb</DestFile>
-  <DestTime>2016-02-13T12:04:03.55191+01:00</DestTime>
+  <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/page_background.jpg</SourceFile>
+  <SourceTime>2006-02-13T11:09:32+01:00</SourceTime>
+  <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/page_background.xnb</DestFile>
+  <DestTime>2016-02-13T12:05:42.7041848+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

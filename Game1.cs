@@ -53,7 +53,7 @@ namespace MonoGame_2DPlatformer
             Content.RootDirectory = "Content";
             Screen.fullScreen = false;
             //Screen.resolution(1280, 720);
-            this.Window.Title = "Super Tux";
+            this.Window.Title = "Super Fuzlib";
 
         }
 

@@ -66,3 +66,9 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprit
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\menu.map
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.ogg
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\page_background.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\clouds.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\lvl_tileset.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\sky.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\tileset.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\gfxlib\mountains.xnb

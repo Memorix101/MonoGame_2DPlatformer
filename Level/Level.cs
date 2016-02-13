@@ -52,10 +52,10 @@ namespace MonoGame_2DPlatformer
 
         public static void Init()
         {
-            sky = Game1.content.Load<Texture2D>("Sprites/sky");
-            clouds = Game1.content.Load<Texture2D>("Sprites/clouds");
-            clouds2 = Game1.content.Load<Texture2D>("Sprites/clouds");
-            mountains = Game1.content.Load<Texture2D>("Sprites/mountains");
+            sky = Game1.content.Load<Texture2D>("Sprites/gfxlib/sky");
+            clouds = Game1.content.Load<Texture2D>("Sprites/gfxlib/clouds");
+            clouds2 = Game1.content.Load<Texture2D>("Sprites/gfxlib/clouds");
+            mountains = Game1.content.Load<Texture2D>("Sprites/gfxlib/mountains");
 
             coinFont.Load("Fonts/70sPixel_20");
             coinFont.Color = Color.OrangeRed;

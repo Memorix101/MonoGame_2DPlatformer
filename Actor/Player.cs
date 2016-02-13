@@ -56,7 +56,7 @@ namespace MonoGame_2DPlatformer
 
         public Player(Vector2 p)
         {
-            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/TuxJR"); //"Sprites/wheelie_right"
+            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/wheelie_right");
             this.Position = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
