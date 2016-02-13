@@ -24,6 +24,7 @@ namespace MonoGame_2DPlatformer
         static Vector2 cloudOrigin, cloudOrigin2;
 
         static Player player;
+        static Exit exit;
         static TestActor testActor;
 
         static List<ItemTile> mapItems;
@@ -110,6 +111,10 @@ namespace MonoGame_2DPlatformer
                             testActor = new TestActor(new Vector2(x * 32, y * 32));
                             break;
 
+                        case 'x':
+                            exit = new Exit(new Vector2(x * 32, y * 32));
+                            break;
+
                             // Unknown tile type character
                             //    default:
                             //      throw new Exception(String.Format("Wrong Char"));
@@ -142,6 +147,18 @@ namespace MonoGame_2DPlatformer
         {
             if (testActor != null)
                 testActor.Update();
+
+            if (player != null && exit != null) // I guess we are save now ^-^
+            {
+
+                exit.Update(gameTime);
+                
+                                
+                if (exit.TileBoundingBox.Intersects(player.TileBoundingBox))
+                {
+                    exit.rigidbody.Dispose();
+                }
+            }
 
             for (int i = mapCoins.Count - 1; i >= 0; i--)
             {
@@ -211,6 +228,9 @@ namespace MonoGame_2DPlatformer
             {
               c.Draw(spriteBatch);
             }
+
+            if (exit != null)
+                exit.Draw(spriteBatch);
 
             if (player != null)
                 player.Draw(spriteBatch);

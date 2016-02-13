@@ -51,6 +51,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GUI\Menu.cs" />
     <Compile Include="Items\Coins.cs" />
+    <Compile Include="Items\Exit.cs" />
     <Compile Include="Items\ItemTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

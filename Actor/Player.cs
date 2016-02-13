@@ -34,8 +34,9 @@ namespace MonoGame_2DPlatformer
 
         private const float gravity = 50f;
 
-       // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
-        Rectangle playerRect = new Rectangle(512, 673, 32, 32);
+        // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
+        //  Rectangle playerRect = new Rectangle(512, 673, 32, 32);
+        Rectangle playerRect = new Rectangle(512, 608, 32, 32);
 
         bool buttonDown;
         bool grounded;
