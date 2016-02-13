@@ -93,6 +93,10 @@ namespace MonoGame_2DPlatformer
                             mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.Block));
                             break;
 
+                        case '+':
+                            mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.BlockC));
+                            break;
+
                         case 'c':
                             //mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.Coin));
                            mapCoins.Add(new Coins(new Vector2(x * 32, y * 32)));
@@ -100,12 +104,15 @@ namespace MonoGame_2DPlatformer
 
                         case 'p':
                             player = new Player(new Vector2(x * 32, y * 32));
-                            testActor = new TestActor();
                             break;
 
-                        // Unknown tile type character
-                    //    default:
-                      //      throw new Exception(String.Format("Wrong Char"));
+                        case 'q':
+                            testActor = new TestActor(new Vector2(x * 32, y * 32));
+                            break;
+
+                            // Unknown tile type character
+                            //    default:
+                            //      throw new Exception(String.Format("Wrong Char"));
                     }
                     x++;
                 }

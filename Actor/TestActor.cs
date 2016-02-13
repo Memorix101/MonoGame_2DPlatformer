@@ -12,16 +12,18 @@ namespace MonoGame_2DPlatformer
         Body rigidbody;
         Texture2D texture;
         Vector2 position = new Vector2(0f, 0f);
+        Rectangle rect;
 
-        public TestActor()
+        public TestActor(Vector2 p)
        {
-            //  texture = Game1.content.Load<Texture2D>("Sprites/tileset");
-            texture = Game1.content.Load<Texture2D>("Test/box");
+           texture = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
+           // texture = Game1.content.Load<Texture2D>("Test/box");
+           rect = new Rectangle(544, 352, 32, 32);
 
-            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(texture.Width), ConvertUnits.ToSimUnits(texture.Height), 1.0f, ConvertUnits.ToSimUnits(position));
+            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(p));
             rigidbody.BodyType = BodyType.Dynamic;
-            rigidbody.Restitution = 0.3f;
-            rigidbody.Friction = 0.5f;
+            rigidbody.Restitution = 0f;
+            rigidbody.Friction = 1f;
             rigidbody.CollisionCategories = Category.Cat1; // default
             rigidbody.CollidesWith = Category.All;
         }
@@ -39,8 +41,8 @@ namespace MonoGame_2DPlatformer
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), null, Color.White, rigidbody.Rotation, 
-                new Vector2(texture.Width / 2.0f, texture.Height / 2.0f), 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), rect, Color.White, rigidbody.Rotation, 
+                new Vector2(rect.Width / 2.0f, rect.Height / 2.0f), 1f, SpriteEffects.None, 1f);
         }
     }
 }

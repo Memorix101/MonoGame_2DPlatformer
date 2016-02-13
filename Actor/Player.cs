@@ -48,7 +48,7 @@ namespace MonoGame_2DPlatformer
             this.playerDir = PlayerDir.right;
 
             // Setup physics
-            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Height / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
+            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
             //Set rigidbody behaivior here
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.UserData = (string)"Player";

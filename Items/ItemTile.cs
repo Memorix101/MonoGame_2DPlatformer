@@ -20,6 +20,7 @@ namespace MonoGame_2DPlatformer
     {
         Blank,
         Block,
+        BlockC,
     }
 
     class ItemTile : Sprite
@@ -44,6 +45,8 @@ namespace MonoGame_2DPlatformer
                 rect = new Rectangle(1473, 702, 32, 32);
             // rect = new Rectangle(290, 160, 32, 32);
             //rect = new Rectangle(12, 0, 32, 32);
+            else if (t == ItemTileType.BlockC)
+                rect = new Rectangle(1473, 734, 32, 32);
 
             //Set rigidbody behaivior here
             rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
@@ -98,6 +101,12 @@ namespace MonoGame_2DPlatformer
                     break;
 
                 case ItemTileType.Block:
+                    this.Rect = rect;
+                    this.LayerDepth = layer;
+                    rigidbody.CollidesWith = Category.All;
+                    break;
+
+                case ItemTileType.BlockC:
                     this.Rect = rect;
                     this.LayerDepth = layer;
                     rigidbody.CollidesWith = Category.All;
