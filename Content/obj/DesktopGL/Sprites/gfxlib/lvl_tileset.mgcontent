@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/gfxlib/lvl_tileset.png</SourceFile>
-  <SourceTime>2006-01-28T18:17:14+01:00</SourceTime>
+  <SourceTime>2016-02-13T12:24:08.4166071+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/gfxlib/lvl_tileset.xnb</DestFile>
-  <DestTime>2016-02-13T12:14:24.0140475+01:00</DestTime>
+  <DestTime>2016-02-13T12:31:26.655602+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

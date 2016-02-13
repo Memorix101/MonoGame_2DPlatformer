@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/TuxJR.png</SourceFile>
-  <SourceTime>2016-02-13T10:25:01.5012194+01:00</SourceTime>
+  <SourceTime>2016-02-13T12:24:03.967636+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/TuxJR.xnb</DestFile>
-  <DestTime>2016-02-13T10:25:05.0595965+01:00</DestTime>
+  <DestTime>2016-02-13T12:31:22.5204534+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

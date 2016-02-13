@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Music/chipdisko.ogg</SourceFile>
-  <SourceTime>2015-12-20T21:12:26+01:00</SourceTime>
+  <SourceTime>2016-02-13T12:24:03.960631+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Music/chipdisko.xnb</DestFile>
-  <DestTime>2016-02-13T11:38:19.8842903+01:00</DestTime>
+  <DestTime>2016-02-13T12:31:26.5733887+01:00</DestTime>
   <Importer>OggImporter</Importer>
   <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
