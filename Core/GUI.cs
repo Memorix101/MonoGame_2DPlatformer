@@ -12,6 +12,11 @@ namespace MonoGame_2DPlatformer.Core
         Vector2 position;
         Color color = Color.White;
 
+        public GUI (string t)
+        {
+            text = t;
+        }
+
         public void Text(string t)
         {
             text = t;

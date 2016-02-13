@@ -27,8 +27,6 @@ E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bi
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\wheelie_right.xnb
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_75.xnb
 E:\Freak Mind Games\Projects 2016\MonoGame_2DPlatformer\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_20.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\level0.txt
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\test.txt
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Test\test.fmgui
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Fonts\70sPixel_20.xnb
@@ -63,3 +61,8 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.exe
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Debug\MonoGame_2DPlatformer.pdb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\sky.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\title.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Sprites\TuxJR.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Levels\menu.map
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.ogg
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Debug\Content\Music\chipdisko.xnb

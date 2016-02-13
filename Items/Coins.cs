@@ -45,6 +45,11 @@ namespace MonoGame_2DPlatformer
             rigidbody.OnCollision += Rigidbody_OnCollision;
         }
 
+        public Body GetRigidbody
+        {
+            get { return rigidbody; }
+        }
+
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();

@@ -46,11 +46,18 @@ namespace MonoGame_2DPlatformer
             //Set rigidbody behaivior here
             rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
                 rigidbody.BodyType = BodyType.Kinematic;
+            rigidbody.UserData = (string)"Tile";
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
             rigidbody.CollisionCategories = Category.Cat1; // <- cat2 is floor cat
 
             LoadBlock(p);
+        }
+
+
+        public Body GetRigidbody
+        {
+            get { return rigidbody; }
         }
 
         public ItemTileType Type
@@ -93,6 +100,7 @@ namespace MonoGame_2DPlatformer
                     this.LayerDepth = layer;
                     rigidbody.CollidesWith = Category.All;
                     break;
+
             }
         }
 

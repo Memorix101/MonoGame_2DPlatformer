@@ -49,15 +49,16 @@
     <Compile Include="Core\SpriteBatchEx.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GUI\Menu.cs" />
     <Compile Include="Items\Coins.cs" />
     <Compile Include="Items\ItemTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tile\Level.cs" />
-    <Compile Include="Tile\MapLoader.cs" />
-    <Compile Include="Tile\SheetLoader.cs" />
-    <Compile Include="Tile\Sprite.cs" />
-    <Compile Include="Tile\Tile.cs" />
+    <Compile Include="Level\Level.cs" />
+    <Compile Include="Level\MapLoader.cs" />
+    <Compile Include="Level\SheetLoader.cs" />
+    <Compile Include="Level\Sprite.cs" />
+    <Compile Include="Level\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DebugView MonoGame, Version=3.5.0.19270, Culture=neutral, processorArchitecture=x86">
@@ -83,12 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Levels\level0.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Levels\test.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Icon.ico" />
     <Content Include="OpenTK.dll.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -112,7 +107,10 @@
     <None Include="Content\Fonts\Pixel.xnb" />
     <None Include="Content\Fonts\RetroPixel.xnb" />
     <Content Include="Content\Levels\test.map">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Levels\menu.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Music\Rainbow_Ride.xnb" />
     <None Include="Content\Sprites\clouds.xnb" />

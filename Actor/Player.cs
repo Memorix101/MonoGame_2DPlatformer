@@ -6,8 +6,10 @@ using Microsoft.Xna.Framework.Input;
 
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Collision;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Dynamics.Contacts;
+using FarseerPhysics.DebugView;
 
 using MonoGame_2DPlatformer.Core;
 
@@ -22,6 +24,19 @@ namespace MonoGame_2DPlatformer
     class Player : Sprite
     {
 
+        float _angle;
+        float l;
+        Vector2 point1;
+        Vector2 d;
+        Vector2 point2;
+        Vector2 normal;
+        Vector2 point;
+        bool hitClosest;
+
+        /// <summary>
+        /// /
+        /// </summary>
+
         Texture2D texture;
         const float moveSpeed = 3f;
         const float jumpForce = -50f;
@@ -32,7 +47,7 @@ namespace MonoGame_2DPlatformer
 
         private const float gravity = 50f;
 
-     //   float airTime;
+        //   float airTime;
         Rectangle playerRect = new Rectangle(0, 0, 32, 32);
 
         bool buttonDown;
@@ -41,15 +56,16 @@ namespace MonoGame_2DPlatformer
 
         public Player(Vector2 p)
         {
-            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/wheelie_right");
+            this.tile = texture = Game1.content.Load<Texture2D>("Sprites/TuxJR"); //"Sprites/wheelie_right"
             this.Position = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
 
             // Setup physics
-            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Height/2), 1f, ConvertUnits.ToSimUnits(this.Position));
+            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Height / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
             //Set rigidbody behaivior here
             rigidbody.BodyType = BodyType.Dynamic;
+            rigidbody.UserData = (string)"Player";
             rigidbody.FixedRotation = true;
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
@@ -90,9 +106,22 @@ namespace MonoGame_2DPlatformer
         public void Update(GameTime gameTime)
         {
             this.Rect = playerRect;
-  
-            GameDebug.Log("-" + jumpCount + " - ");
 
+            GameDebug.Log("-" + jumpCount + " - ");
+            ////
+
+            _angle = 0f;
+            l = 11.0f;
+            point1 = new Vector2(0.0f, 10.0f);
+            d = new Vector2(l * (float)Math.Cos(_angle), l * (float)Math.Sin(_angle));
+            point2 = point1 + d;
+
+            point = ConvertUnits.ToDisplayUnits(rigidbody.Position);
+            normal = Vector2.Zero;
+
+            ////
+
+            Raycast();
             CameraBounds();
             Input(gameTime);
         }
@@ -105,15 +134,69 @@ namespace MonoGame_2DPlatformer
 
             if (contact.IsTouching)
             {
+                //  if (other.CollisionCategories == Category.Cat1)
                 if (other.CollisionCategories == Category.Cat1)
                 {
                     //GameDebug.Log("ASDASFASDGSD");
                     jumpCount = 0;
-                   // isGrounded = true;
+                    // isGrounded = true;
                 }
             }
 
             return true;
+        }
+
+        void Raycast()
+        {
+            Game1.world.RayCast((f, p, n, fr) =>
+            {
+                Body body = f.Body;
+                if (body.UserData != null)
+                {
+                    int index = (int)body.UserData;
+                    if (index == 0)
+                    {
+                        // filter
+                        return -1.0f;
+                    }
+                }
+
+                hitClosest = true;
+                point = p;
+                normal = n;
+                return fr;
+            }, point1, point2);
+
+            if (hitClosest)
+            {
+                GameDebug.Log("CASE IF");
+                /*
+                Game1.DebugView.BeginCustomDraw(ref Game1.camera.projection, ref Game1.camera.view);
+                Game1.DebugView.DrawPoint(point, .5f, new Color(0.4f, 0.9f, 0.4f)); 
+
+                Game1.DebugView.DrawSegment(point1, point, new Color(0.8f, 0.8f, 0.8f));
+                Vector2 head = point + 0.5f * normal;
+                Game1.DebugView.DrawSegment(point, head, new Color(0.9f, 0.9f, 0.4f));
+                Game1.DebugView.EndCustomDraw();
+                */
+            }
+            else
+            {
+
+                GameDebug.Log("CASE ELSE");
+
+
+                /*
+                Matrix view2 = Matrix.CreateScale(32); //default 32
+                view2 *= Game1.DebugCam.view;
+
+                Game1.DebugView.BeginCustomDraw(ref Game1.camera.projection, ref view2);
+                Game1.DebugView.DrawString(0,0,"Press 1-5 to drop stuff, m to change the mode");
+                Game1.DebugView.DrawSegment(point1, point2, new Color(0.8f, 0.8f, 0.8f));
+                Game1.DebugView.EndCustomDraw();
+                */
+            }
+
         }
 
         void CameraBounds()
@@ -158,22 +241,25 @@ namespace MonoGame_2DPlatformer
             {
                 GameDebug.Log("JUMP!!!!");
                 Jump(gameTime);
+                jumpCount += 1;
                 buttonDown = true;
             }
             else if (Keyboard.GetState().IsKeyUp(Keys.Space) && buttonDown && jumpCount <= 1)//&& isGrounded && !inAir)
             {
                 GameDebug.Log("DO NOT JUMP!!!!!");
-                jumpCount++;
                 buttonDown = false;
             }
-
-        //    Console.WriteLine("JUMP" + inAir + grounded);
-            // p_pos.X += moveSpeed * Time.DeltaTime;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if(playerDir == PlayerDir.left)
+
+#if DEBUG
+            SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
+            spriteBatch.DrawLine(point1, point2, Color.Yellow);
+#endif
+
+            if (playerDir == PlayerDir.left)
             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
                 new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
             else if (playerDir == PlayerDir.right)

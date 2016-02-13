@@ -27,20 +27,21 @@ namespace MonoGame_2DPlatformer
         public static GraphicsDeviceManager graphics { get; private set; }
         public static ContentManager content { get; private set; }
         public static World world { get; private set; }
-        public static Camera2D camera { get; private set;}
+        public static Camera2D camera { get; private set; }
         public static PhysicsDebugCam DebugCam { get; private set; }
-        // public static DebugViewXNA DebugView { get; private set; }
+        public static DebugViewXNA DebugView { get; private set; }
+        public static bool debugActive { get; private set; }
+        public static string levelName = "menu";
+        public static bool quit;
         /// <summary>
         /// Declare your stuff here
         /// </summary>
 
         SpriteBatch spriteBatch;
-
-        Level level;
-
+    //    static Level level;
         GUI testText;
-
         Song ms_rainbow_ride;
+
 
         string some_text = "EARLY PRE-ALPHA CODE";
 
@@ -52,7 +53,7 @@ namespace MonoGame_2DPlatformer
             Content.RootDirectory = "Content";
             Screen.fullScreen = false;
             //Screen.resolution(1280, 720);
-            this.Window.Title = "MonoGame 2D Platformer";
+            this.Window.Title = "Super Tux";
 
         }
 
@@ -60,11 +61,15 @@ namespace MonoGame_2DPlatformer
         {
             ///GameDebug.Log("Hello World");
 
-            level = new Level();
+            //  level = new Level();
+            Level.Init();
             camera = new Camera2D();
             DebugCam = new PhysicsDebugCam();
-            testText = new GUI();
+            testText = new GUI(string.Empty);
             testText.Text(some_text);
+
+            PhysicLoad();
+            Level.LoadLevel(levelName);
 
             base.Initialize();
         }
@@ -74,19 +79,13 @@ namespace MonoGame_2DPlatformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-         //   ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
-            //  MediaPlayer.Play(ms_rainbow_ride);
-
-            PhysicLoad();
-
-            level.LoadLevel("test.txt");
-
+            ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
+          //  MediaPlayer.Play(ms_rainbow_ride);
+            
             testText.Load("Fonts\\Pixel");
-            testText.Position = new Vector2(Screen.width/2 - testText.Size.X/2, 0);
+            testText.Position = new Vector2(Screen.width / 2 - testText.Size.X / 2, 0);
             testText.Color = Color.Red;
-
         }
-
 
         protected override void UnloadContent()
         {
@@ -96,8 +95,8 @@ namespace MonoGame_2DPlatformer
         protected override void Update(GameTime gameTime)
         {
             _gameTime = gameTime;
-            
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape) || quit)
                 Exit();
                         
             world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
@@ -105,7 +104,9 @@ namespace MonoGame_2DPlatformer
             camera.Update();
             DebugCam.Update();
 
-            level.Update(gameTime);
+            Menu.Update();
+
+            Level.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -136,14 +137,14 @@ namespace MonoGame_2DPlatformer
          
             //Sky
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
-            level.Sky(spriteBatch);
+            Level.Sky(spriteBatch);
             spriteBatch.End();
 
 
             // Level stuff
 
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.view);
-            level.Draw(spriteBatch);
+            Level.Draw(spriteBatch);
             spriteBatch.End();
 
           #if DEBUG
@@ -154,7 +155,8 @@ namespace MonoGame_2DPlatformer
 
             spriteBatch.Begin();
             testText.Draw(spriteBatch);
-            level.HUD(spriteBatch);
+            Level.HUD(spriteBatch);
+            Menu.Draw(spriteBatch);
             spriteBatch.End();
 
 
@@ -166,14 +168,15 @@ namespace MonoGame_2DPlatformer
             Matrix view2 = Matrix.CreateScale(32); //default 32
             view2 *= Game1.DebugCam.view;
 
-            DebugViewXNA physicsDebug;
-            physicsDebug = new DebugViewXNA(Game1.world);
-            physicsDebug.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
-            physicsDebug.DefaultShapeColor = Color.Red;
-            physicsDebug.SleepingShapeColor = Color.Green;
-            physicsDebug.StaticShapeColor = Color.Violet;
-            physicsDebug.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
-            physicsDebug.RenderDebugData(ref Game1.DebugCam.projection, ref view2);
+            debugActive = true;
+
+            DebugView = new DebugViewXNA(Game1.world);
+            DebugView.AppendFlags(FarseerPhysics.DebugViewFlags.DebugPanel);
+            DebugView.DefaultShapeColor = Color.Red;
+            DebugView.SleepingShapeColor = Color.Green;
+            DebugView.StaticShapeColor = Color.Violet;
+            DebugView.LoadContent(Game1.graphics.GraphicsDevice, Game1.content);
+            DebugView.RenderDebugData(ref Game1.DebugCam.projection, ref view2);
         }
 
 
