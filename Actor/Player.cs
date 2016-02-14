@@ -32,6 +32,8 @@ namespace MonoGame_2DPlatformer
         Body rigidbody;
         PlayerDir playerDir;
 
+        bool killed;
+
         private const float gravity = 50f;
 
         // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
@@ -47,6 +49,7 @@ namespace MonoGame_2DPlatformer
             this.Position = p;
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
+            killed = false;
 
             // Setup physics
             rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
@@ -62,9 +65,14 @@ namespace MonoGame_2DPlatformer
             rigidbody.OnCollision += Rigidbody_OnCollision; // Tack collision
         }
 
-        public float Grav
+        private float Grav
         {
             get { return gravity; }
+        }
+
+        public Body GetRigidbody
+        {
+            get { return rigidbody; }
         }
 
         public bool isGrounded
@@ -92,26 +100,35 @@ namespace MonoGame_2DPlatformer
 
         public void Update(GameTime gameTime)
         {
-            this.Rect = playerRect;
-
-            GameDebug.Log("-" + rigidbody.Friction.ToString());
-
-            Raycast();
-
-            if (isGrounded)
+            if (!killed)
             {
-                  //  rigidbody.Friction = 1;
-                jumpCount = 0;
-                GameDebug.Log(isGrounded.ToString());
+                this.Rect = playerRect;
+
+                GameDebug.Log("-" + rigidbody.Friction.ToString());
+
+                Raycast();
+
+                if (isGrounded)
+                {
+                    //  rigidbody.Friction = 1;
+                    jumpCount = 0;
+                    GameDebug.Log(isGrounded.ToString());
+                }
+                else
+                {
+                    //  rigidbody.Friction = 0f;
+                    GameDebug.Log(isGrounded.ToString());
+                }
+
+                CameraBounds();
+                Input(gameTime);
             }
-            else
-            {
-                  //  rigidbody.Friction = 0f;
-                GameDebug.Log(isGrounded.ToString());
-            }
-            
-            CameraBounds();
-            Input(gameTime);
+        }
+
+
+        public void ReceiveDamage()
+        {
+            killed = true;
         }
 
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
@@ -198,19 +215,21 @@ namespace MonoGame_2DPlatformer
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (!killed)
+            {
+                if (playerDir == PlayerDir.left)
+                    spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f,
+                        new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
+                else if (playerDir == PlayerDir.right)
+                    spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f,
+                        new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.None, LayerDepth);
+                //base.Draw(spriteBatch);
 
-            if (playerDir == PlayerDir.left)
-            spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
-                new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
-            else if (playerDir == PlayerDir.right)
-             spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f, 
-                 new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.None, LayerDepth);
-            //base.Draw(spriteBatch);
-            
 #if DEBUG
-            SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
-            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, distance)), Color.Red);
+                SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
+                spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, distance)), Color.Red);
 #endif
+            }
 
         }
     }

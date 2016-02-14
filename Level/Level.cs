@@ -19,14 +19,13 @@ namespace MonoGame_2DPlatformer
     static class Level
     {
         //Sky and Background
-        static Texture2D sky,clouds, clouds2, mountains;
-        static float cloudMove,cloudMove2;
+        static Texture2D sky, clouds, clouds2, mountains;
+        static float cloudMove, cloudMove2;
         static Vector2 cloudOrigin, cloudOrigin2;
 
         static Player player;
         static Exit exit;
         static TestActor testActor;
-        static Enemy enemy;
 
         static List<ItemTile> mapItems;
         static List<Coins> mapCoins;
@@ -38,7 +37,6 @@ namespace MonoGame_2DPlatformer
 
         public static void Dispose()
         {
-
             foreach (ItemTile t in mapItems)
             {
                 t.GetRigidbody.Dispose();
@@ -74,11 +72,11 @@ namespace MonoGame_2DPlatformer
         //level loader
         public static void LoadLevel(string name)
         {
-            if(mapItems == null)
-            mapItems = new List<ItemTile>();
+            if (mapItems == null)
+                mapItems = new List<ItemTile>();
 
-            if(mapCoins == null)
-            mapCoins = new List<Coins>();
+            if (mapCoins == null)
+                mapCoins = new List<Coins>();
 
             if (mapEnemies == null)
                 mapEnemies = new List<Enemy>();
@@ -92,13 +90,13 @@ namespace MonoGame_2DPlatformer
             {
                 x = 0;
 
-                foreach(char token in line)
+                foreach (char token in line)
                 {
-                    switch(token)
+                    switch (token)
                     {
                         // Blank space
                         case '.':
-                        // mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 0f, ItemTileType.Blank));
+                            // mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 0f, ItemTileType.Blank));
                             break;
 
                         case '#':
@@ -111,7 +109,7 @@ namespace MonoGame_2DPlatformer
 
                         case 'c':
                             //mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.Coin));
-                           mapCoins.Add(new Coins(new Vector2(x * 32, y * 32)));
+                            mapCoins.Add(new Coins(new Vector2(x * 32, y * 32)));
                             break;
 
                         case 'p':
@@ -148,10 +146,10 @@ namespace MonoGame_2DPlatformer
             coinFont.Text("Coins: " + coins);
 
             if (testActor != null)
-            testActor.Update();
+                testActor.Update();
 
-            if (player != null) 
-            player.Update(gameTime);
+            if (player != null)
+                player.Update(gameTime);
 
             MoveClouds();
 
@@ -166,7 +164,7 @@ namespace MonoGame_2DPlatformer
             if (player != null && exit != null) // I guess we are save now ^-^
             {
                 exit.Update(gameTime);
-             
+
                 if (exit.TileBoundingBox.Intersects(player.TileBoundingBox))
                 {
                     exit.rigidbody.Dispose();
@@ -176,16 +174,26 @@ namespace MonoGame_2DPlatformer
 
             for (int i = mapEnemies.Count - 1; i >= 0; i--)
             {
-                mapEnemies[i].Update(gameTime);
 
-                if (player != null)
+                mapEnemies[i].Update(gameTime);
+                
+                if (mapEnemies[i].Bite && mapEnemies[i] != null)
                 {
-                  //  if (mapEnemies[i].TileBoundingBox.Intersects(player.TileBoundingBox))
-                  //  {
-                    //    mapEnemies[i].rigidbody.Dispose();
-                    //    mapEnemies.RemoveAt(i);
-                   // }
+                    player.GetRigidbody.Dispose();
+                    player.ReceiveDamage();
+                    player = null;
                 }
+
+            }
+
+            for (int i = mapEnemies.Count - 1; i >= 0; i--)
+            {
+                if (mapEnemies[i].IsKilled && mapEnemies[i] != null)
+                {
+                    mapEnemies[i].rigidbody.Dispose();
+                    mapEnemies.RemoveAt(i);
+                }
+                    
             }
 
             for (int i = mapCoins.Count - 1; i >= 0; i--)

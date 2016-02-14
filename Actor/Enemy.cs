@@ -34,10 +34,13 @@ namespace MonoGame_2DPlatformer
         FaceDir faceDir;
 
         bool dirChange;
+        bool killed;
+        bool bite;
 
         float walkSpeed = 1f;
 
         float distance = 0.5f;
+        float distanceUp = 0.5f;
 
         float speed = 5f;
 
@@ -49,10 +52,13 @@ namespace MonoGame_2DPlatformer
             this.tile = texture = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
             this.Position = p;
 
+            killed = false;
+            bite = false;
             faceDir = FaceDir.right;
 
             //Set rigidbody behaivior here
-            rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Width), 1.0f, ConvertUnits.ToSimUnits(this.Position));
+            // rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(this.Position));
+            rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(rect.Width/2), 1.0f, ConvertUnits.ToSimUnits(this.Position));
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.FixedRotation = true;
             rigidbody.Restitution = 0f; // No bounciness
@@ -67,35 +73,63 @@ namespace MonoGame_2DPlatformer
             get { return rigidbody; }
         }
 
+        public bool IsKilled
+        {
+            private set { killed = value; }
+            get { return killed; }
+        }
+
+        public bool Bite
+        {
+            private set { bite = value; }
+            get { return bite; }
+        }
+
+        public override Rectangle TileBoundingBox
+        {
+            get
+            {
+                return new Rectangle(
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.X),
+                 (int)ConvertUnits.ToDisplayUnits(rigidbody.Position.Y),
+                    rect.Width,
+                    rect.Height);
+            }
+        }
+
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
 
             if (other.CollisionCategories == Category.Cat2)
             {
-                me.IgnoreCollisionWith(other);
+                // me.IgnoreCollisionWith(other);
+                bite = true;
             }
 
             return true;
         }
 
-        void RayLeft()
+        void RayUp()
         {
-            dirChange = false;
+            IsKilled = false;
             Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
             {
-                if (fixture.CollisionCategories != Category.Cat2)
+
+                if (fixture.CollisionCategories == Category.Cat2)
                 {
-                    dirChange = true;
+                    IsKilled = true;
                 }
 
                 return 0;
             };
-            
-                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distance, 0)); 
+
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distanceUp / 2, -distanceUp));
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(0, -distanceUp));
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(distanceUp / 2, -distanceUp));
         }
 
-        void RayRight()
+        void RaySide()
         {
             dirChange = false;
             Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
@@ -108,7 +142,10 @@ namespace MonoGame_2DPlatformer
                 return 0;
             };
 
-            Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(distance, 0));
+            if (faceDir == FaceDir.right)
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(distance, 0));
+            if (faceDir == FaceDir.left)
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distance, 0));
         }
 
 
@@ -117,19 +154,16 @@ namespace MonoGame_2DPlatformer
             this.Rect = rect;
 
             rigidbody.LinearVelocity = new Vector2(walkSpeed, rigidbody.LinearVelocity.Y);
-
-            if(faceDir == FaceDir.left)
-                RayLeft();
-            if (faceDir == FaceDir.right)
-                RayRight();
-            
+        
+            RaySide();
+            RayUp();
 
             if (dirChange)
             {
                 walkSpeed *= -1f;
                 dirChange = false;
 
-                if(faceDir == FaceDir.left)
+                if (faceDir == FaceDir.left)
                 {
                     faceDir = FaceDir.right;
                 }
@@ -178,10 +212,13 @@ namespace MonoGame_2DPlatformer
 #if DEBUG
             SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
 
+            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(distanceUp/2, -distanceUp)), Color.Yellow);
+            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, -distanceUp)), Color.Yellow);
+            spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(-distanceUp/2, -distanceUp)), Color.Yellow);
+
             if (faceDir == FaceDir.right)
                 spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(distance, 0)), Color.BlueViolet);
-
-            if (faceDir == FaceDir.left)
+            else if (faceDir == FaceDir.left)
                 spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(-distance, 0)), Color.BlueViolet);
 #endif
 
