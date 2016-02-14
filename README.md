@@ -2,7 +2,7 @@
 
 Unfinished / Work In Progress !
 
-![screenshot 261](https://cloud.githubusercontent.com/assets/1466920/12876126/8fbda2f6-cdfa-11e5-80b6-1d1fdf99eb98.png)
+![screenshot 156](https://cloud.githubusercontent.com/assets/1466920/13033902/cbbf390a-d326-11e5-9427-3650bcc227c3.png)
 
 My first MonoGame / XNA game :) 
 Code structure is not pretty, but hey it works ^-^
