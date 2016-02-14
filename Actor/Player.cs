@@ -69,9 +69,10 @@ namespace MonoGame_2DPlatformer
             rigidbody.OnCollision += Rigidbody_OnCollision; // Tack collision
         }
 
-        private float Grav
+        public bool isDead
         {
-            get { return gravity; }
+            private set { killed = value; }
+            get { return killed; }
         }
 
         public Body GetRigidbody
@@ -177,6 +178,7 @@ namespace MonoGame_2DPlatformer
         public void ReceiveDamage()
         {
             killed = true;
+            rigidbody.Dispose();
         }
 
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
@@ -213,7 +215,7 @@ namespace MonoGame_2DPlatformer
         {
             float _pos = rigidbody.Position.X;
             float _posMax = ConvertUnits.ToSimUnits(Game1.camera.offsetRight - Rect.Width);
-            float _posMin = ConvertUnits.ToSimUnits(Game1.camera.offsetLeft + Rect.Width);
+            float _posDown = ConvertUnits.ToSimUnits(Screen.height - Rect.Width);
 
             _pos = MathHelper.Clamp(rigidbody.Position.X, 0, rigidbody.Position.X);
             rigidbody.Position = new Vector2(_pos, rigidbody.Position.Y);
@@ -222,6 +224,11 @@ namespace MonoGame_2DPlatformer
             {
                 Game1.camera.UpdatePos(ConvertUnits.ToDisplayUnits(rigidbody.Position.X));
                 Game1.DebugCam.UpdatePos();
+            }
+
+            if (rigidbody.Position.Y >= _posDown)
+            {
+                ReceiveDamage();
             }
         }
 
