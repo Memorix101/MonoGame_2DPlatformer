@@ -10,7 +10,7 @@
 ///////////////////
 10/02/2016 - DD/MM/YYYY
 
-- Player will be stopped by screen bounds on the left side -> can only walk to right 
+- Player will be stopped by screen bounds on the left side -> can only walk to right [OK] <- I made it work, but then I decided to make it "modern"
 - Coin collision detection [OK]
 - Jump logic (double jump and gounded bool for not "spam jummping") [OK]
 - Scene manager to easily change the level and display (Menu to Level, Introscreen etc.) [OK]

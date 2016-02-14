@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
@@ -28,6 +29,8 @@ namespace MonoGame_2DPlatformer
         const float jumpForce = -50f;
         int jumpCount = 0;
         float distance = 0.5f;
+             
+       SoundEffect sn_kill_player;
 
         Body rigidbody;
         PlayerDir playerDir;
@@ -38,7 +41,9 @@ namespace MonoGame_2DPlatformer
 
         float time;
         float rectFrame = 1;
-        float speed = 5f;
+        float speed = 8f;
+
+        SoundEffect sn_jump;
 
         // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
         //  Rectangle playerRect = new Rectangle(512, 673, 32, 32);
@@ -54,6 +59,9 @@ namespace MonoGame_2DPlatformer
             this.LayerDepth = 1f;
             this.playerDir = PlayerDir.right;
             killed = false;
+
+            sn_kill_player = Game1.content.Load<SoundEffect>("Sounds/cute_low_impact_01");
+            sn_jump = Game1.content.Load<SoundEffect>("Sounds/Jump");
 
             // Setup physics
             rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
@@ -131,6 +139,7 @@ namespace MonoGame_2DPlatformer
                 CameraBounds();
                 Input(gameTime);
             }
+
         }
 
         private void Frames()
@@ -177,26 +186,18 @@ namespace MonoGame_2DPlatformer
 
         public void ReceiveDamage()
         {
+            if(!isDead)
+                sn_kill_player.Play();
+
             killed = true;
-            rigidbody.Dispose();
+            rigidbody.CollisionCategories = Category.None;
+            // rigidbody.Dispose();
         }
 
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
-            /*
-              if (contact.IsTouching)
-              {
-                  //  if (other.CollisionCategories == Category.Cat1)
-                  if (other.CollisionCategories == Category.Cat1)
-                  {
-                      jumpCount = 0;
-                      // isGrounded = true;
-                  }
-              }
-              */
-
-            return true;
+                return true;
         }
 
         void Raycast()
@@ -236,6 +237,7 @@ namespace MonoGame_2DPlatformer
         {
             if (jumpCount <= 1)
             {
+                sn_jump.Play();
                 rigidbody.ApplyForce(new Vector2(0f, jumpForce));
             }
         }
@@ -276,16 +278,16 @@ namespace MonoGame_2DPlatformer
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!killed)
-            {
+       
                 if (playerDir == PlayerDir.left)
                     spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f,
                         new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.FlipHorizontally, LayerDepth);
                 else if (playerDir == PlayerDir.right)
                     spriteBatch.Draw(texture, ConvertUnits.ToDisplayUnits(rigidbody.Position), playerRect, Color.White, 0f,
                         new Vector2(playerRect.Width / 2.0f, playerRect.Height / 2.0f), 1f, SpriteEffects.None, LayerDepth);
-                //base.Draw(spriteBatch);
-
+            //base.Draw(spriteBatch);
+            if (!killed)
+            {
 #if DEBUG
                 SpriteBatchEx.GraphicsDevice = Game1.graphics.GraphicsDevice;
                 spriteBatch.DrawLine(ConvertUnits.ToDisplayUnits(rigidbody.Position), ConvertUnits.ToDisplayUnits(rigidbody.Position + new Vector2(0, distance)), Color.Red);

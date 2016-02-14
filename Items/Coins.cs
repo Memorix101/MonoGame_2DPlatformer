@@ -37,7 +37,7 @@ namespace MonoGame_2DPlatformer
 
             //Set rigidbody behaivior here
             rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(coinRect.Width), ConvertUnits.ToSimUnits(coinRect.Width), 1.0f, ConvertUnits.ToSimUnits(this.Position));
-            rigidbody.BodyType = BodyType.Static;
+            rigidbody.BodyType = BodyType.Kinematic;
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
             rigidbody.CollisionCategories = Category.Cat3; // cat3 is coins

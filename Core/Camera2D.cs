@@ -18,8 +18,12 @@ namespace MonoGame_2DPlatformer.Core
         float PosY = 16f;
         Vector2 Pos;
 
+        Vector2 startPos;
+
         public Camera2D()
         {
+
+            startPos = new Vector2(16f, 16f);
             /// CURRENT FAKE CAMERA
             projection = Matrix.CreateOrthographicOffCenter(0, Game1.graphics.GraphicsDevice.Viewport.Width / 2, Game1.graphics.GraphicsDevice.Viewport.Height / 2, 0, 0, 1);
             view = Matrix.Identity;
@@ -42,6 +46,11 @@ namespace MonoGame_2DPlatformer.Core
         public Vector2 Position
         {
             get { return Pos; }
+        }
+
+        public void Reset()
+        {
+            Pos = startPos;
         }
 
         public void UpdatePos(float p)

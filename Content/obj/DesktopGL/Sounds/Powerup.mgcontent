@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Powerup.wav</SourceFile>
+  <SourceTime>2014-04-18T17:11:18.1342934+02:00</SourceTime>
+  <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sounds/Powerup.xnb</DestFile>
+  <DestTime>2016-02-14T11:51:46.521373+01:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

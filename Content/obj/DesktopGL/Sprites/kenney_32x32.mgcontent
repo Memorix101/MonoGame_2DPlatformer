@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/kenney_32x32.png</SourceFile>
-  <SourceTime>2016-02-13T17:46:15.0317949+01:00</SourceTime>
+  <SourceTime>2016-02-14T14:11:41.9551574+01:00</SourceTime>
   <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Sprites/kenney_32x32.xnb</DestFile>
-  <DestTime>2016-02-13T17:46:19.1755477+01:00</DestTime>
+  <DestTime>2016-02-14T14:11:44.6301479+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

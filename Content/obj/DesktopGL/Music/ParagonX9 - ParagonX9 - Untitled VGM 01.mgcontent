@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Music/ParagonX9 - ParagonX9 - Untitled VGM 01.mp3</SourceFile>
+  <SourceTime>2016-02-14T12:07:06.8881482+01:00</SourceTime>
+  <DestFile>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Music/ParagonX9 - ParagonX9 - Untitled VGM 01.xnb</DestFile>
+  <DestTime>2016-02-14T12:07:40.8799437+01:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2016-02-06T01:03:00+01:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2016-02-06T01:03:00+01:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/bin/DesktopGL/Music/ParagonX9 - ParagonX9 - Untitled VGM 01.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

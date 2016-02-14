@@ -50,6 +50,7 @@
     <Compile Include="Core\SpriteBatchEx.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GUI\GameUI.cs" />
     <Compile Include="GUI\Menu.cs" />
     <Compile Include="Items\Coins.cs" />
     <Compile Include="Items\Exit.cs" />

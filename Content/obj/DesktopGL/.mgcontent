@@ -36,5 +36,23 @@
     <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/tileset.png</File>
     <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/title.png</File>
     <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/gfxlib/area04_bkg0.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Blip_Select.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Default.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Explosion.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Explosion2.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Jump.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Laser1.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Laser2.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Pickup_Coin.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Powerup.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Randomize.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Randomize2.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Randomize3.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/Randomize4.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Music/ParagonX9 - ParagonX9 - Untitled VGM 01.mp3</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/cute_low_impact_01.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sounds/magic_01.wav</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/stage_clear.png</File>
+    <File>C:/Users/Jan-Eric/Documents/GitHub/MonoGame_2DPlatformer/Content/Sprites/died.png</File>
   </SourceFiles>
 </SourceFileCollection>

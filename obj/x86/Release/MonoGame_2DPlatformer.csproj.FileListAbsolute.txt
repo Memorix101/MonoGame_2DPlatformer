@@ -1,21 +1,53 @@
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Levels\level0.txt
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Levels\test.txt
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Levels\test.map
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Levels\menu.map
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Test\test.fmgui
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Fonts\70sPixel.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Fonts\70sPixel_20.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Fonts\70sPixel_75.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Fonts\Pixel.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Fonts\RetroPixel.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Music\Rainbow_Ride.ogg
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Music\Rainbow_Ride.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Music\ParagonX9 - ParagonX9 - Untitled VGM 01.ogg
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Music\ParagonX9 - ParagonX9 - Untitled VGM 01.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Blip_Select.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\cute_low_impact_01.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Default.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Explosion.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Explosion2.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Jump.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Laser1.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Laser2.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\magic_01.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Pickup_Coin.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Powerup.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Randomize.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Randomize2.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Randomize3.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sounds\Randomize4.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\clouds.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\coins_gold.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gem_20_points.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\died.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\kenney_32x32.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\mountains.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\sky.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\stage_clear.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\tileset.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\wheelie_left.xnb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\wheelie_right.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\title.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\custom\TuxJR.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\custom\Tux_Junior_Walk_Template.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\area04_bkg0.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\clouds.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\coins_gold.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\gem_20_points.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\lvl_tileset.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\mountains.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\page_background.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\sky.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\tileset.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\wheelie_left.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\gfxlib\wheelie_right.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\Jason-Em\Green bot sprites.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\Jason-Em\Items.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\Jason-Em\Old enemies 2.xnb
+C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Sprites\Jason-Em\Tiles.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Test\box.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Test\razer.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Test\sir.xnb
@@ -23,7 +55,6 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\OpenTK.dll.
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Font.xnb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\DebugView Content.contentproj
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Font.spritefont
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\Content\Levels\test.map
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\MonoGame_2DPlatformer.exe
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\MonoGame_2DPlatformer.pdb
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\DebugView MonoGame.dll
@@ -33,4 +64,3 @@ C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\NVorbis.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\bin\Release\OpenTK.dll
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Release\MonoGame_2DPlatformer.exe
 C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Release\MonoGame_2DPlatformer.pdb
-C:\Users\Jan-Eric\Documents\GitHub\MonoGame_2DPlatformer\obj\x86\Release\MonoGame_2DPlatformer.csprojResolveAssemblyReference.cache

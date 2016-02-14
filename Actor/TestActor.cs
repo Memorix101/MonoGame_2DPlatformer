@@ -24,19 +24,18 @@ namespace MonoGame_2DPlatformer
             rigidbody.BodyType = BodyType.Dynamic;
             rigidbody.Restitution = 0f;
             rigidbody.Friction = 1f;
-            rigidbody.CollisionCategories = Category.Cat1; // default
+            rigidbody.CollisionCategories = Category.Cat4; 
             rigidbody.CollidesWith = Category.All;
         }
 
         public Body body
         {
-            get { return body; }
+            get { return rigidbody; }
         }
 
         public void Update()
         {
-            //rigidbody.ApplyForce(new Vector2(2, 2));
-            //Console.WriteLine(ConvertUnits.ToDisplayUnits(rigidbody.Position));
+            // hello ?!
         }
 
         public void Draw(SpriteBatch spriteBatch)

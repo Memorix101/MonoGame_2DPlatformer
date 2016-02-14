@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
@@ -31,6 +31,8 @@ namespace MonoGame_2DPlatformer
         Rectangle rect = new Rectangle(0, 896, 32, 32);
         public Body rigidbody;
 
+        SoundEffect sn_kill_enemy;
+
         FaceDir faceDir;
 
         bool dirChange;
@@ -40,7 +42,7 @@ namespace MonoGame_2DPlatformer
         float walkSpeed = 1f;
 
         float distance = 0.5f;
-        float distanceUp = 0.5f;
+        float distanceUp = 0.35f;
 
         float speed = 5f;
 
@@ -51,6 +53,8 @@ namespace MonoGame_2DPlatformer
         {
             this.tile = texture = Game1.content.Load<Texture2D>("Sprites/kenney_32x32");
             this.Position = p;
+
+            sn_kill_enemy = Game1.content.Load<SoundEffect>("Sounds/Randomize3");
 
             killed = false;
             bite = false;
@@ -119,14 +123,15 @@ namespace MonoGame_2DPlatformer
                 if (fixture.CollisionCategories == Category.Cat2)
                 {
                     IsKilled = true;
+                    sn_kill_enemy.Play();
                 }
 
                 return 0;
             };
 
-                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distanceUp / 2, -distanceUp));
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distanceUp/2, -distanceUp));
                 Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(0, -distanceUp));
-                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(distanceUp / 2, -distanceUp));
+                Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(distanceUp/2, -distanceUp));
         }
 
         void RaySide()
@@ -134,7 +139,7 @@ namespace MonoGame_2DPlatformer
             dirChange = false;
             Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
             {
-                if (fixture.CollisionCategories != Category.Cat2)
+                if (fixture.CollisionCategories == Category.Cat4)
                 {
                     dirChange = true;
                 }
@@ -152,29 +157,34 @@ namespace MonoGame_2DPlatformer
         public void Update(GameTime gameTime)
         {
             this.Rect = rect;
-
-            rigidbody.LinearVelocity = new Vector2(walkSpeed, rigidbody.LinearVelocity.Y);
-        
-            RaySide();
-            RayUp();
-
-            if (dirChange)
+            if (!IsKilled)
             {
-                walkSpeed *= -1f;
-                dirChange = false;
+                rigidbody.LinearVelocity = new Vector2(walkSpeed, rigidbody.LinearVelocity.Y);
 
-                if (faceDir == FaceDir.left)
-                {
-                    faceDir = FaceDir.right;
-                }
-                else if (faceDir == FaceDir.right)
-                {
-                    faceDir = FaceDir.left;
-                }
+                RaySide();
+                RayUp();
 
+                if (dirChange)
+                {
+                    walkSpeed *= -1f;
+                    dirChange = false;
+
+                    if (faceDir == FaceDir.left)
+                    {
+                        faceDir = FaceDir.right;
+                    }
+                    else if (faceDir == FaceDir.right)
+                    {
+                        faceDir = FaceDir.left;
+                    }
+
+                }
+                Frames();
             }
-
-            Frames();
+            else
+            {
+                rect = new Rectangle(64, 896, 32, 32);
+            }
         }
 
         

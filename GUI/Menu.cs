@@ -83,10 +83,6 @@ namespace MonoGame_2DPlatformer
                     ResetColor();
                     MenuItems[1].Color = Color.Red;
                     break;
-                case 2:
-                    ResetColor();
-                    MenuItems[2].Color = Color.Red;
-                    break;
 
             }
         }
@@ -103,9 +99,6 @@ namespace MonoGame_2DPlatformer
                     break;
                 case 1:
                     System.Environment.Exit(1);
-                    break;
-                case 2:
-                    Game1.quit = true;
                     break;
             }
         }

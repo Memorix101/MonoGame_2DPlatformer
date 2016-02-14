@@ -40,7 +40,7 @@ namespace MonoGame_2DPlatformer
         SpriteBatch spriteBatch;
     //    static Level level;
         GUI testText;
-        Song ms_rainbow_ride;
+        Song music;
 
 
         string some_text = "EARLY PRE-ALPHA CODE";
@@ -79,8 +79,9 @@ namespace MonoGame_2DPlatformer
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-           // ms_rainbow_ride = Content.Load<Song>("Music\\Rainbow_Ride");
-          //  MediaPlayer.Play(ms_rainbow_ride);
+            music = Content.Load<Song>("Music\\ParagonX9 - ParagonX9 - Untitled VGM 01");
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
             
             testText.Load("Fonts\\Pixel");
             testText.Position = new Vector2(Screen.width / 2 - testText.Size.X / 2, 0);
@@ -105,6 +106,7 @@ namespace MonoGame_2DPlatformer
             DebugCam.Update();
 
             Menu.Update();
+            GameUI.Update();
 
             Level.Update(gameTime);
 
@@ -154,9 +156,10 @@ namespace MonoGame_2DPlatformer
             //GUI Stuff
 
             spriteBatch.Begin();
-            testText.Draw(spriteBatch);
+        //    testText.Draw(spriteBatch);
             Level.HUD(spriteBatch);
             Menu.Draw(spriteBatch);
+            GameUI.Draw(spriteBatch);
             spriteBatch.End();
 
 

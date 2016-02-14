@@ -8,7 +8,7 @@ using System.IO;
 using FarseerPhysics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 using MonoGame_2DPlatformer;
 using MonoGame_2DPlatformer.Core;
 
@@ -35,6 +35,11 @@ namespace MonoGame_2DPlatformer
 
         static int coins = 0;
 
+        static bool levelDone;
+
+        static SoundEffect sn_coin;
+        static SoundEffect sn_level_exit;
+
         public static void Dispose()
         {
             foreach (ItemTile t in mapItems)
@@ -52,6 +57,25 @@ namespace MonoGame_2DPlatformer
                 e.GetRigidbody.Dispose();
             }
 
+            // Yes, I know a list would be faster :P 
+            if (player != null)
+            {
+                player = null;
+            }
+
+            if (exit != null)
+            {
+                exit = null;
+            }
+
+            if (testActor != null)
+            {
+                testActor.body.Dispose();
+                testActor = null;
+            }
+
+            Game1.camera.Reset();
+
             mapEnemies.Clear();
             mapItems.Clear();
             mapCoins.Clear();
@@ -64,6 +88,9 @@ namespace MonoGame_2DPlatformer
             clouds = Game1.content.Load<Texture2D>("Sprites/clouds");
             clouds2 = Game1.content.Load<Texture2D>("Sprites/clouds");
             mountains = Game1.content.Load<Texture2D>("Sprites/mountains");
+
+            sn_coin = Game1.content.Load<SoundEffect>("Sounds/Pickup_Coin");
+            sn_level_exit = Game1.content.Load<SoundEffect>("Sounds/magic_01");
 
             coinFont.Load("Fonts/70sPixel_20");
             coinFont.Position = new Vector2(5, 5);
@@ -81,6 +108,10 @@ namespace MonoGame_2DPlatformer
 
             if (mapEnemies == null)
                 mapEnemies = new List<Enemy>();
+
+            levelDone = false;
+
+            coins = 0;
 
             string filePath = Game1.content.RootDirectory.ToString() + "\\Levels\\" + name + ".map";
 
@@ -106,6 +137,10 @@ namespace MonoGame_2DPlatformer
 
                         case '+':
                             mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.BlockC));
+                            break;
+
+                        case '-':
+                            mapItems.Add(new ItemTile(new Vector2(x * 32, y * 32), 1f, ItemTileType.DarkBrick));
                             break;
 
                         case 'c':
@@ -146,17 +181,23 @@ namespace MonoGame_2DPlatformer
 
             coinFont.Text("Coins: " + coins);
 
-            if (testActor != null)
-                testActor.Update();
-
             if (player != null)
             {
-                player.Update(gameTime);
+                if (!levelDone)
+                {
+                    player.Update(gameTime);
+                }
+                else
+                {
+                    GameUI.Display(GameUIState.Clear);
+                }
 
                 if (player.isDead)
                 {
-                    player = null;
+               //     player = null;
+
                     //some UI here
+                    GameUI.Display(GameUIState.Died);
                 }
             }
 
@@ -174,9 +215,12 @@ namespace MonoGame_2DPlatformer
             {
                 exit.Update(gameTime);
 
-                if (exit.TileBoundingBox.Intersects(player.TileBoundingBox))
+
+                if (exit.TileBoundingBox.Intersects(player.TileBoundingBox) && !exit.rigidbody.IsDisposed)
                 {
                     exit.rigidbody.Dispose();
+                    levelDone = true;
+                    sn_level_exit.Play();
                 }
             }
 
@@ -201,7 +245,7 @@ namespace MonoGame_2DPlatformer
                 if (mapEnemies[i].IsKilled && mapEnemies[i] != null)
                 {
                     mapEnemies[i].rigidbody.Dispose();
-                    mapEnemies.RemoveAt(i);
+                    //        mapEnemies.RemoveAt(i);
                 }
                     
             }
@@ -215,6 +259,7 @@ namespace MonoGame_2DPlatformer
                     if (mapCoins[i].TileBoundingBox.Intersects(player.TileBoundingBox))
                     {
                         coins += 1;
+                        sn_coin.Play();
                         mapCoins[i].rigidbody.Dispose();
                         mapCoins.RemoveAt(i);
                     }

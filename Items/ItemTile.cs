@@ -21,6 +21,7 @@ namespace MonoGame_2DPlatformer
         Blank,
         Block,
         BlockC,
+        DarkBrick,
     }
 
     class ItemTile : Sprite
@@ -47,6 +48,8 @@ namespace MonoGame_2DPlatformer
             //rect = new Rectangle(12, 0, 32, 32);
             else if (t == ItemTileType.BlockC)
                 rect = new Rectangle(1473, 734, 32, 32);
+            else if (t == ItemTileType.DarkBrick)
+                rect = new Rectangle(1824, 512, 32, 32);
 
             //Set rigidbody behaivior here
             rigidbody = BodyFactory.CreateRectangle(Game1.world, ConvertUnits.ToSimUnits(rect.Width), ConvertUnits.ToSimUnits(rect.Height), 1.0f, ConvertUnits.ToSimUnits(Position)); //default 1:64 ratio 1 meter = 64 pixel
@@ -54,7 +57,7 @@ namespace MonoGame_2DPlatformer
             rigidbody.UserData = (string)"Tile";
             rigidbody.Restitution = 0f; // No bounciness
             rigidbody.Friction = 1f;
-            rigidbody.CollisionCategories = Category.Cat1; // <- cat2 is floor cat
+            rigidbody.CollisionCategories = Category.Cat4; // <- cat4 is floor cat
 
             LoadBlock(p);
         }
@@ -107,6 +110,12 @@ namespace MonoGame_2DPlatformer
                     break;
 
                 case ItemTileType.BlockC:
+                    this.Rect = rect;
+                    this.LayerDepth = layer;
+                    rigidbody.CollidesWith = Category.All;
+                    break;
+
+                case ItemTileType.DarkBrick:
                     this.Rect = rect;
                     this.LayerDepth = layer;
                     rigidbody.CollidesWith = Category.All;
