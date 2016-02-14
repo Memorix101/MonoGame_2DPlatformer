@@ -17,5 +17,5 @@
 - "Experimental" try to make a Level Editor (Windows Forms or MonoGame, preferred to try in MonoGame itself)
 - Write GameState Component "just basic enum to track that" <- What ever I've meant here, next time I have to declaire it more detailed, 'cause I can't remember it :X
 - Mario like enemies, can be killed by jumping on their head/top side and have that lemming walk behaivior [OK]
-- World Map Idea: Make enum (like menu) and Vector Lerp to position next position (level mark)
+- World Map Idea: Make enum (like menu) and Vector Lerp to next position (level mark)
 - Parallax scrolling: make camera follow player on x axis when hitting the screen bounds range and make mountain background fixed and clouds should move [OK]
