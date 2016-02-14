@@ -26,9 +26,11 @@ namespace MonoGame_2DPlatformer
         static Player player;
         static Exit exit;
         static TestActor testActor;
+        static Enemy enemy;
 
         static List<ItemTile> mapItems;
         static List<Coins> mapCoins;
+        static List<Enemy> mapEnemies;
 
         static GUI coinFont = new GUI(string.Empty);
 
@@ -47,6 +49,12 @@ namespace MonoGame_2DPlatformer
                 c.GetRigidbody.Dispose();
             }
 
+            foreach (Enemy e in mapEnemies)
+            {
+                e.GetRigidbody.Dispose();
+            }
+
+            mapEnemies.Clear();
             mapItems.Clear();
             mapCoins.Clear();
         }
@@ -71,6 +79,9 @@ namespace MonoGame_2DPlatformer
 
             if(mapCoins == null)
             mapCoins = new List<Coins>();
+
+            if (mapEnemies == null)
+                mapEnemies = new List<Enemy>();
 
             string filePath = Game1.content.RootDirectory.ToString() + "\\Levels\\" + name + ".map";
 
@@ -115,6 +126,10 @@ namespace MonoGame_2DPlatformer
                             exit = new Exit(new Vector2(x * 32, y * 32));
                             break;
 
+                        case 'e':
+                            mapEnemies.Add(new Enemy(new Vector2(x * 32, y * 32)));
+                            break;
+
                             // Unknown tile type character
                             //    default:
                             //      throw new Exception(String.Format("Wrong Char"));
@@ -150,13 +165,26 @@ namespace MonoGame_2DPlatformer
 
             if (player != null && exit != null) // I guess we are save now ^-^
             {
-
                 exit.Update(gameTime);
-                
-                                
+             
                 if (exit.TileBoundingBox.Intersects(player.TileBoundingBox))
                 {
                     exit.rigidbody.Dispose();
+                }
+            }
+
+
+            for (int i = mapEnemies.Count - 1; i >= 0; i--)
+            {
+                mapEnemies[i].Update(gameTime);
+
+                if (player != null)
+                {
+                  //  if (mapEnemies[i].TileBoundingBox.Intersects(player.TileBoundingBox))
+                  //  {
+                    //    mapEnemies[i].rigidbody.Dispose();
+                    //    mapEnemies.RemoveAt(i);
+                   // }
                 }
             }
 
@@ -227,6 +255,11 @@ namespace MonoGame_2DPlatformer
             foreach (Coins c in mapCoins)
             {
               c.Draw(spriteBatch);
+            }
+
+            foreach (Enemy e in mapEnemies)
+            {
+                e.Draw(spriteBatch);
             }
 
             if (exit != null)

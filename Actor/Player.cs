@@ -117,17 +117,17 @@ namespace MonoGame_2DPlatformer
         private bool Rigidbody_OnCollision(Fixture me, Fixture other, Contact contact)
         {
             //  throw new NotImplementedException();
-          /*
-            if (contact.IsTouching)
-            {
-                //  if (other.CollisionCategories == Category.Cat1)
-                if (other.CollisionCategories == Category.Cat1)
-                {
-                    jumpCount = 0;
-                    // isGrounded = true;
-                }
-            }
-            */
+            /*
+              if (contact.IsTouching)
+              {
+                  //  if (other.CollisionCategories == Category.Cat1)
+                  if (other.CollisionCategories == Category.Cat1)
+                  {
+                      jumpCount = 0;
+                      // isGrounded = true;
+                  }
+              }
+              */
 
             return true;
         }

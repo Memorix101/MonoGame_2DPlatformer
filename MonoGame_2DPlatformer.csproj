@@ -39,6 +39,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Actor\Enemy.cs" />
     <Compile Include="Actor\Player.cs" />
     <Compile Include="Actor\TestActor.cs" />
     <Compile Include="Core\Camera2D.cs" />
