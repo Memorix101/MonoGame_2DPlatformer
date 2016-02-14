@@ -179,9 +179,12 @@ namespace MonoGame_2DPlatformer
                 
                 if (mapEnemies[i].Bite && mapEnemies[i] != null)
                 {
-                    player.GetRigidbody.Dispose();
-                    player.ReceiveDamage();
-                    player = null;
+                    if (player != null)
+                    {
+                        player.GetRigidbody.Dispose();
+                        player.ReceiveDamage();
+                        player = null;
+                    }
                 }
 
             }

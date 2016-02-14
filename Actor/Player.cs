@@ -36,6 +36,10 @@ namespace MonoGame_2DPlatformer
 
         private const float gravity = 50f;
 
+        float time;
+        float rectFrame = 1;
+        float speed = 5f;
+
         // Rectangle playerRect = new Rectangle(0, 0, 32, 32);
         //  Rectangle playerRect = new Rectangle(512, 673, 32, 32);
         Rectangle playerRect = new Rectangle(512, 608, 32, 32);
@@ -113,18 +117,62 @@ namespace MonoGame_2DPlatformer
                     //  rigidbody.Friction = 1;
                     jumpCount = 0;
                     GameDebug.Log(isGrounded.ToString());
+                    playerRect = new Rectangle(512, 608, 32, 32);
                 }
                 else
                 {
+                    JumpFrames();
                     //  rigidbody.Friction = 0f;
-                    GameDebug.Log(isGrounded.ToString());
+                    // GameDebug.Log(isGrounded.ToString());
                 }
+
 
                 CameraBounds();
                 Input(gameTime);
             }
         }
 
+        private void Frames()
+        {
+            time += speed * Time.DeltaTime;
+            rectFrame += speed * Time.DeltaTime;
+
+            if (time >= 4f)
+            {
+                rectFrame = 1f;
+                time = 0F;
+            }
+
+            // GameDebug.Log("HIIII " + time);
+
+            if (rectFrame >= 1f)
+                playerRect = new Rectangle(736, 608, 32, 32);
+            if (rectFrame >= 2f)
+                playerRect = new Rectangle(768, 608, 32, 32);
+            if (rectFrame >= 3f)
+                playerRect = new Rectangle(800, 608, 32, 32);
+            if (rectFrame >= 4f)
+                playerRect = new Rectangle(832, 608, 32, 32);
+        }
+
+        private void JumpFrames()
+        {
+            time += speed * Time.DeltaTime;
+            rectFrame += speed * Time.DeltaTime;
+
+            if (time >= 2f)
+            {
+                //rectFrame = 1f;
+               // time = 0F;
+            }
+
+            // GameDebug.Log("HIIII " + time);
+
+            if (rectFrame >= 1f)
+                playerRect = new Rectangle(544, 608, 32, 32);
+            if (rectFrame >= 2f)
+                playerRect = new Rectangle(576, 608, 32, 32);
+        }
 
         public void ReceiveDamage()
         {
@@ -191,12 +239,18 @@ namespace MonoGame_2DPlatformer
             {
                 rigidbody.LinearVelocity = new Vector2(-moveSpeed, rigidbody.LinearVelocity.Y);
                 playerDir = PlayerDir.left;
+
+                if (isGrounded)
+                    Frames();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 rigidbody.LinearVelocity = new Vector2(moveSpeed, rigidbody.LinearVelocity.Y);
                 playerDir = PlayerDir.right;
+
+                if (isGrounded)
+                    Frames();
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && !buttonDown)
