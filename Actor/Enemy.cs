@@ -84,11 +84,14 @@ namespace MonoGame_2DPlatformer
             dirChange = false;
             Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
             {
-                dirChange = true;
+                if (fixture.CollisionCategories != Category.Cat2)
+                {
+                    dirChange = true;
+                }
+
                 return 0;
             };
-
-
+            
                 Game1.world.RayCast(get_first_callback, rigidbody.Position, rigidbody.Position + new Vector2(-distance, 0)); 
         }
 
@@ -97,7 +100,11 @@ namespace MonoGame_2DPlatformer
             dirChange = false;
             Func<Fixture, Vector2, Vector2, float, float> get_first_callback = delegate (Fixture fixture, Vector2 point, Vector2 normal, float fraction)
             {
-                dirChange = true;
+                if (fixture.CollisionCategories != Category.Cat2)
+                {
+                    dirChange = true;
+                }
+
                 return 0;
             };
 
