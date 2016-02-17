@@ -1,7 +1,5 @@
 # MonoGame_2DPlatformer
 
-Unfinished / Work In Progress !
-
 ![screenshot 156](https://cloud.githubusercontent.com/assets/1466920/13033902/cbbf390a-d326-11e5-9427-3650bcc227c3.png)
 
 My first MonoGame / XNA game :) 
