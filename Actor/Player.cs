@@ -67,6 +67,7 @@ namespace MonoGame_2DPlatformer
             rigidbody = BodyFactory.CreateCircle(Game1.world, ConvertUnits.ToSimUnits(playerRect.Width / 2), 1f, ConvertUnits.ToSimUnits(this.Position));
             //Set rigidbody behaivior here
             rigidbody.BodyType = BodyType.Dynamic;
+            rigidbody.SleepingAllowed = false;
             rigidbody.UserData = (string)"Player";
             rigidbody.FixedRotation = true;
             rigidbody.Restitution = 0f; // No bounciness
@@ -246,7 +247,8 @@ namespace MonoGame_2DPlatformer
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                rigidbody.LinearVelocity = new Vector2(-moveSpeed, rigidbody.LinearVelocity.Y);
+              //  rigidbody.LinearVelocity = new Vector2(-moveSpeed, rigidbody.LinearVelocity.Y);
+              rigidbody.Position = new Vector2(rigidbody.Position.X -moveSpeed * Time.DeltaTime, rigidbody.Position.Y);
                 playerDir = PlayerDir.left;
 
                 if (isGrounded)
@@ -255,7 +257,8 @@ namespace MonoGame_2DPlatformer
 
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                rigidbody.LinearVelocity = new Vector2(moveSpeed, rigidbody.LinearVelocity.Y);
+                //  rigidbody.LinearVelocity = new Vector2(moveSpeed, rigidbody.LinearVelocity.Y);
+                rigidbody.Position = new Vector2(rigidbody.Position.X + moveSpeed * Time.DeltaTime, rigidbody.Position.Y);
                 playerDir = PlayerDir.right;
 
                 if (isGrounded)
